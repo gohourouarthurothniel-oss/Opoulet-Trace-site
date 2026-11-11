@@ -1,0 +1,1852 @@
+﻿<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      O'Poulet Tracé Plus | Poulet tracé &amp; grillades à Yamoussoukro
+    </title>
+    <meta
+      name="description"
+      content="Le vrai poulet tracé braisé au feu de bois à Yamoussoukro. Poissons, escargots, cabri, agouti. 2 salons : CNPS 24h/24 &amp; Asabou. Commandez sur WhatsApp !"
+    />
+    <meta name="theme-color" content="#F4ECD8" />
+    <link rel="canonical" href="https://Opoulettrace.com/" />
+
+    <!-- Open Graph : aperçu des liens sur WhatsApp / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="O'Poulet Tracé Plus — Poulet tracé &amp; braisés à Yamoussoukro"
+    />
+    <meta
+      property="og:description"
+      content="La spécialité : le poulet tracé braisé à la braise. Poissons, escargots, cabri, agouti. Ouvert 24h/24 derrière la Nouvelle CNPS — commandez sur WhatsApp."
+    />
+    <meta
+      property="og:image"
+      content="https://Opoulettrace.com/assets/hero-terrasse.jpg"
+    />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="1339" />
+    <meta
+      property="og:image:alt"
+      content="La terrasse d'O'Poulet Tracé Plus le soir, autour de la braise"
+    />
+    <meta property="og:url" content="https://Opoulettrace.com/" />
+    <meta property="og:site_name" content="O'Poulet Tracé Plus" />
+    <meta property="og:locale" content="fr_FR" />
+
+    <!-- Twitter Cards (WA/Facebook lisent l'Open Graph ci-dessus) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="O'Poulet Tracé Plus — Poulet tracé &amp; braisés à Yamoussoukro"
+    />
+    <meta
+      name="twitter:description"
+      content="La spécialité : le poulet tracé braisé à la braise. Ouvert 24h/24 derrière la Nouvelle CNPS — commandez sur WhatsApp."
+    />
+    <meta
+      name="twitter:image"
+      content="https://Opoulettrace.com/assets/hero-terrasse.jpg"
+    />
+
+    <!-- Favicon + PWA : logo officiel de la maison (256×256) -->
+    <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
+    <link rel="apple-touch-icon" href="assets/logo.jpg" />
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- Typographie : Fraunces (display) + Work Sans (texte) + Barlow Condensed (étiquettes/prix/horaires) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,0..100;1,9..144,400..700,0..100&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+
+    <!-- Fallback sans JavaScript : la navbar reste toujours lisible et le menu accessible -->
+    <noscript>
+      <style>
+        /* Navbar toujours opaque : liens sombres lisibles, quel que soit le défilement */
+        html:not(.js) .navbar {
+          background: var(--bg);
+        }
+
+        /* Neutralise la barre transparente + le liseré braise de la v4 (états prévus pour JS) */
+        html:not(.js) .navbar::after {
+          display: none;
+        }
+        html:not(.js) .navbar:not(.navbar--scrolled) .navbar__logo,
+        html:not(.js) .nav-link {
+          color: var(--ink) !important;
+        }
+        html:not(.js) .logo-sub {
+          color: var(--brass-dark) !important;
+        }
+
+        /* Mobile sans JS : pas de burger, le menu est affiché directement */
+        @media (max-width: 1023px) {
+          html:not(.js) .navbar {
+            position: static;
+            height: auto;
+          }
+          html:not(.js) .navbar__burger {
+            display: none;
+          }
+          html:not(.js) .navbar__inner {
+            height: auto;
+            flex-wrap: wrap;
+            padding-block: 0.8rem;
+          }
+          html:not(.js) .navbar__nav {
+            position: static;
+            display: flex;
+            background: transparent;
+            box-shadow: none;
+            padding: 0.4rem 0 0.2rem;
+            max-height: none;
+            overflow: visible;
+            animation: none;
+          }
+          html:not(.js) .navbar__nav ul {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.2rem;
+          }
+          html:not(.js) .nav-link {
+            padding: 0.45rem 0.8rem;
+            font-size: 0.92rem;
+            color: var(--ink);
+          }
+          html:not(.js) .hero {
+            padding-block: 2.4rem 4rem;
+          }
+        }
+
+        /* Panier : sans JavaScript, les déclencheurs resteraient muets → masqués */
+        html:not(.js) .cart-open-btn,
+        html:not(.js) .menu-cartline,
+        html:not(.js) .menu-item__add,
+        html:not(.js) .menu-item__portion,
+        html:not(.js) .menu__tabs,
+        html:not(.js) .menu__hintrow {
+          display: none !important;
+        }
+      </style>
+    </noscript>
+
+    <!-- ============================================================
+         Données structurées Schema.org — SEO local
+         Restaurant principal (Local 1 · CNPS, 24h/24) + branch
+         (Local 2 · Asabou, 17h00-22h30). L'aggregateRating reflète
+         la note affichée sur la page ("4,1 / 5 · 94 avis Google").
+         ============================================================ -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "@id": "https://Opoulettrace.com/#restaurant",
+        "name": "O'Poulet Tracé Plus",
+        "alternateName": "O'Poulet Tracé Plus (Chez Alain)",
+        "description": "Restaurant ivoirien spécialisé dans le poulet tracé braisé à la braise. Poissons braisés, escargots, cabri et agouti. Deux salons à Yamoussoukro : derrière la Nouvelle CNPS (24h/24) et à Asabou, en face de l'hôtel Nara.",
+        "image": "https://Opoulettrace.com/assets/hero-terrasse.jpg",
+        "url": "https://Opoulettrace.com/",
+        "telephone": "+2250708318118",
+        "priceRange": "$$",
+        "currenciesAccepted": "XOF",
+        "paymentAccepted": "Espèces",
+        "servesCuisine": ["Ivoirienne", "Africaine", "Grillades"],
+        "menu": "https://Opoulettrace.com/#menu",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Derrière la Nouvelle CNPS, Quartier Thérèse",
+          "addressLocality": "Yamoussoukro",
+          "addressCountry": "CI"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.1",
+          "reviewCount": "94",
+          "bestRating": "5"
+        },
+        "branch": [
+          {
+            "@type": "Restaurant",
+            "@id": "https://Opoulettrace.com/#local2",
+            "name": "O'Poulet Tracé 2",
+            "telephone": "+2250708318118",
+            "image": "https://Opoulettrace.com/assets/hero-terrasse.jpg",
+            "url": "https://Opoulettrace.com/#contact",
+            "priceRange": "$$",
+            "servesCuisine": ["Ivoirienne", "Africaine", "Grillades"],
+            "menu": "https://Opoulettrace.com/#menu",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Quartier Asabou, en face de l'hôtel Nara",
+              "addressLocality": "Yamoussoukro",
+              "addressCountry": "CI"
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday"
+                ],
+                "opens": "17:00",
+                "closes": "22:30"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+    <!-- ============================================================ -->
+    <!-- NAVBAR FIXE                                                   -->
+    <!-- ============================================================ -->
+    <header class="navbar" id="navbar">
+      <div class="navbar__inner container">
+        <a
+          class="navbar__logo"
+          href="#accueil"
+          aria-label="O'Poulet Tracé Plus — retour à l'accueil"
+        >
+          <span class="logo-badge" aria-hidden="true">
+            <img
+              src="assets/logo.jpg"
+              alt=""
+              width="46"
+              height="46"
+              loading="eager"
+              decoding="async"
+            />
+          </span>
+          <span class="logo-word"
+            >O'Poulet<small class="logo-sub">Tracé&nbsp;Plus</small></span
+          >
+        </a>
+
+        <nav
+          class="navbar__nav"
+          id="nav-menu"
+          aria-label="Navigation principale"
+        >
+          <ul>
+            <li><a class="nav-link" href="#accueil">Accueil</a></li>
+            <li><a class="nav-link" href="#a-propos">À propos</a></li>
+            <li><a class="nav-link" href="#menu">Notre carte</a></li>
+            <li><a class="nav-link" href="#galerie">Galerie</a></li>
+            <li><a class="nav-link" href="#contact">Infos pratiques</a></li>
+          </ul>
+          <a
+            class="btn btn--wa navbar__cta"
+            href="https://wa.me/2250708318118?text=Bonjour%20O%27Poulet%20Trac%C3%A9%20Plus%20!%20Je%20voudrais%20commander."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              class="wa-glyph"
+              src="assets/wa-logo-white.png"
+              alt=""
+              width="20"
+              height="20"
+              loading="lazy"
+            />
+            <span>Commander</span>
+          </a>
+        </nav>
+
+        <!-- Déclencheur panier : toujours visible (desktop + mobile) -->
+        <button
+          class="cart-open-btn"
+          type="button"
+          data-cart-open
+          aria-haspopup="dialog"
+          aria-controls="panier"
+          aria-label="Voir mon panier"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <use href="#icon-cart" />
+          </svg>
+          <span
+            class="cart-open-btn__badge"
+            data-cart-badge
+            aria-hidden="true"
+            hidden
+            >0</span
+          >
+        </button>
+
+        <button
+          class="navbar__burger"
+          id="nav-burger"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+          aria-label="Ouvrir le menu de navigation"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Sprite SVG : icônes réutilisables (aucun emoji) -->
+    <svg
+      width="0"
+      height="0"
+      style="position: absolute"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <symbol id="icon-clock" viewBox="0 0 24 24">
+        <circle
+          cx="12"
+          cy="12"
+          r="8.6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+        <path
+          d="M12 7.4V12l3.2 2"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </symbol>
+      <symbol id="icon-pin" viewBox="0 0 24 24">
+        <path
+          d="M12 21.2S5.8 15.9 5.8 11a6.2 6.2 0 1 1 12.4 0c0 4.9-6.2 10.2-6.2 10.2Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+        <circle
+          cx="12"
+          cy="10.8"
+          r="2.3"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+      </symbol>
+      <symbol id="icon-phone" viewBox="0 0 24 24">
+        <path
+          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <symbol id="icon-star" viewBox="0 0 24 24">
+        <path
+          d="m12 2.6 2.9 6.1 6.6.7-4.9 4.4 1.4 6.5L12 17l-6 3.3 1.4-6.5-4.9-4.4 6.6-.7L12 2.6Z"
+          fill="currentColor"
+        />
+      </symbol>
+      <symbol id="icon-flame" viewBox="0 0 24 24">
+        <path
+          d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <symbol id="icon-leaf" viewBox="0 0 24 24">
+        <path
+          d="M4 20c0-8 4.5-13.5 15.5-15 .5 9.5-3.5 14.5-10.5 14.5-2 0-4-.5-5 0Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M5.5 18.5C9 13.5 12.5 11.5 16 10.5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </symbol>
+      <symbol id="icon-chevron" viewBox="0 0 24 24">
+        <path
+          d="m6 9 6 6 6-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <symbol id="icon-cart" viewBox="0 0 24 24">
+        <path
+          d="M2.7 3.2h2.2l2.36 12.1a1.9 1.9 0 0 0 1.87 1.55h8.53a1.9 1.9 0 0 0 1.86-1.5l1.63-7.1H6.25"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <circle cx="9.6" cy="20.4" r="1.5" fill="currentColor" />
+        <circle cx="17.2" cy="20.4" r="1.5" fill="currentColor" />
+      </symbol>
+      <symbol id="icon-bin" viewBox="0 0 24 24">
+        <path
+          d="M4 6.5h16M9.5 6.5V5a1.5 1.5 0 0 1 1.5-1.5h2A1.5 1.5 0 0 1 14.5 5v1.5M6.2 6.5l.75 11.9a2 2 0 0 0 2 1.87h6.1a2 2 0 0 0 2-1.87L17.8 6.5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M10.1 10.4v6M13.9 10.4v6M9.8 6.5V5.2a2.2 2.2 0 0 1 4.4 0v1.3"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <!-- Réseaux sociaux (tracés officiels minimalistes, CC0) -->
+      <symbol id="icon-tiktok" viewBox="0 0 24 24">
+        <path
+          d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"
+          fill="currentColor"
+        />
+      </symbol>
+      <symbol id="icon-facebook" viewBox="0 0 24 24">
+        <path
+          d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+          fill="currentColor"
+        />
+      </symbol>
+    </svg>
+
+    <main id="contenu">
+      <!-- ======================================================== -->
+      <!-- SECTION 1 : HERO                                          -->
+      <!-- ======================================================== -->
+      <section class="hero" id="accueil">
+        <div class="hero__slides" aria-hidden="true">
+          <div
+            class="hero__slide hero__slide--active"
+            style="background-image: url(&quot;assets/POULET BRAISE.jpg&quot;)"
+          ></div>
+          <div
+            class="hero__slide"
+            style="background-image: url(&quot;assets/hero-terrasse.jpg&quot;)"
+          ></div>
+          <div
+            class="hero__slide"
+            style="background-image: url(&quot;assets/hero-salle.jpg&quot;)"
+          ></div>
+        </div>
+        <div class="hero__overlay" aria-hidden="true"></div>
+
+        <div class="hero__content container">
+          <p class="hero__eyebrow reveal">
+            Chez Alain · Yamoussoukro, derrière la Nouvelle CNPS
+          </p>
+          <h1 class="reveal reveal--d1">
+            Poulet tracé &amp; <em class="accent-italic">braisé</em> à
+            Yamoussoukro,<br />le vrai goût servi comme à la maison.
+          </h1>
+          <p class="hero__subtitle reveal reveal--d2">
+            Chez Alain, dégustez notre célèbre poulet tracé braisé avec ses
+            accompagnements (attiéké, frites, alloco, piment). Poissons,
+            escargots, cabri et agouti complètent notre carte. Réservez votre
+            table d'un simple message WhatsApp !
+          </p>
+          <div class="hero__actions reveal reveal--d3">
+            <a
+              class="btn btn--wa btn--lg"
+              href="https://wa.me/2250708318118?text=Bonjour%20O%27Poulet%20Trac%C3%A9%20Plus%20!%20Je%20voudrais%20commander."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                class="wa-glyph"
+                src="assets/wa-logo-white.png"
+                alt=""
+                width="20"
+                height="20"
+                loading="lazy"
+              />
+              Commander sur WhatsApp
+            </a>
+            <a class="btn btn--ghost btn--lg btn--light" href="#menu"
+              >Voir la carte</a
+            >
+          </div>
+          <ul class="hero__trust reveal reveal--d4" role="list">
+            <li>
+              <svg class="trust-star" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-star" />
+              </svg>
+              <strong>4,1 / 5</strong>&nbsp;&nbsp;·&nbsp;&nbsp;94 avis Google
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-clock" /></svg
+              >Ouvert 24&nbsp;h&nbsp;/&nbsp;24, 7&nbsp;jours sur&nbsp;7
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-flame" /></svg
+              >Préparation maison à la braise
+            </li>
+          </ul>
+        </div>
+
+        <a
+          class="hero__scroll"
+          href="#a-propos"
+          aria-label="Faire défiler vers À propos"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <use href="#icon-chevron" />
+          </svg>
+        </a>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- SECTION 2 : À PROPOS                                      -->
+      <!-- ======================================================== -->
+      <section class="section apropos" id="a-propos">
+        <div class="container">
+          <!-- ZONE 1 : en-tête au-dessus de tout (titre + badge) -->
+          <header class="apropos__head">
+            <p class="eyebrow reveal">La maison</p>
+            <h2 class="reveal reveal--d1">
+              Le poulet <em class="accent-italic">tracé</em>, notre signature
+            </h2>
+          </header>
+
+          <!-- ZONE 2 : vidéo à gauche · texte à droite -->
+          <div class="apropos__body">
+            <figure class="apropos__media reveal">
+              <video
+                src="assets/video%20presentation.mp4"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="auto"
+                poster="assets/about-salle.jpg"
+                aria-label="Vidéo d'ambiance : le salon en bois de palettes et la terrasse d'O'Poulet Tracé Plus"
+              ></video>
+              <figcaption class="apropos__figtag">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-star" />
+                </svg>
+                Salon en bois de palettes
+              </figcaption>
+            </figure>
+
+            <div class="apropos__text">
+              <p class="lead reveal reveal--d2">
+                Le Maître incontesté du braisé à Yamoussoukro. De notre célèbre
+                "poulet tracé" aux viandes et poissons braisés/grillés,
+                <strong>O'Poulet Tracé Plus</strong> la maison qu'on appelle
+                <span class="accent-italic">« Poulet Tracé chez Alain »</span>
+                vous offre une expérience culinaire authentique autour de
+                grandes tables animées et dans un cadre à couper le souffle,
+                jusqu'au bout de la nuit. Un visiteur le résume en une phrase :
+                <q class="accent-italic"
+                  >un cadre très pertinent, à vous couper le souffle</q
+                >.
+              </p>
+
+              <blockquote class="reveal reveal--d3">
+                <p>
+                  « Le poulet est doux… le poisson, un autre niveau. Trop trop
+                  bon. »
+                </p>
+                <cite>— Avis Google sur la fiche du restaurant</cite>
+              </blockquote>
+            </div>
+          </div>
+          <br />
+          <!-- ZONE 3 : caractéristiques, pleine largeur, en bas de section -->
+          <ul class="apropos__features" role="list">
+            <li class="reveal reveal--d2">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><use href="#icon-flame" /></svg>
+              </span>
+              <div>
+                <h3>Le tracé, à la braise</h3>
+                <p>
+                  Poulet découpé, assaisonné et braisé lentement, servi avec
+                  Attiéké, Frittes, Alloco et piment.
+                </p>
+              </div>
+            </li>
+            <li class="reveal reveal--d3">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><use href="#icon-leaf" /></svg>
+              </span>
+              <div>
+                <h3>Des braisés pour tous les goûts</h3>
+                <p>
+                  Poisson, escargots, cabri, agouti : sautés ou grillés, la
+                  carte reste généreuse.
+                </p>
+              </div>
+            </li>
+            <li class="reveal reveal--d4">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><use href="#icon-clock" /></svg>
+              </span>
+              <div>
+                <h3>Ouvert 24&nbsp;h&nbsp;/&nbsp;24, 7&nbsp;jour sur&nbsp;7</h3>
+                <p>
+                  De la pause d'après-match aux fins de soirée : la braise
+                  n'éteint jamais.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- SECTION 3 : NOTRE CARTE                                   -->
+      <!-- ======================================================== -->
+      <section class="section menu" id="menu">
+        <div class="container">
+          <div class="menu__head">
+            <p class="eyebrow reveal">Notre carte</p>
+            <h2 class="reveal reveal--d1">
+              Six spécialités, <em class="accent-italic">une braise</em>
+            </h2>
+            <p class="menu__intro reveal reveal--d2">
+              Voici les spécialités affichées sur notre carte officielle.
+              Choisissez votre plat, ajoutez-le au panier, puis commandez.
+            </p>
+          </div>
+
+          <!-- Onglets de filtrage -->
+          <div
+            class="menu__tabs reveal"
+            role="tablist"
+            aria-label="Filtrer la carte"
+          >
+            <button
+              class="tab is-active"
+              id="tab-all"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              aria-controls="menu-panel"
+              tabindex="0"
+              data-filter="all"
+            >
+              Tout
+            </button>
+            <button
+              class="tab"
+              id="tab-poulet"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="menu-panel"
+              tabindex="-1"
+              data-filter="poulet"
+            >
+              Poulet
+            </button>
+            <button
+              class="tab"
+              id="tab-poisson"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="menu-panel"
+              tabindex="-1"
+              data-filter="poisson"
+            >
+              Poisson
+            </button>
+            <button
+              class="tab"
+              id="tab-braises"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="menu-panel"
+              tabindex="-1"
+              data-filter="braises"
+            >
+              Escargots &amp; braisés
+            </button>
+          </div>
+
+          <!-- Barre panier : ouverture de la modale de commande -->
+          <div class="menu-cartline reveal">
+            <button
+              class="menu-cartline__btn"
+              type="button"
+              data-cart-open
+              aria-haspopup="dialog"
+              aria-controls="panier"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-cart" />
+              </svg>
+              <span>Voir mon panier</span>
+              <span
+                class="menu-cartline__count"
+                data-cart-badge
+                aria-hidden="true"
+                hidden
+                >0</span
+              >
+            </button>
+          </div>
+
+          <!-- ——— Groupe : La carte chez Alain ——— -->
+          <div
+            class="menu__group"
+            id="menu-panel"
+            role="tabpanel"
+            aria-labelledby="tab-all"
+            tabindex="0"
+            data-group
+          >
+            <h3 class="menu__group-title">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-flame" />
+              </svg>
+              Spécialités de la maison
+            </h3>
+            <ol
+              class="menu__grid menu__grid--numbered"
+              role="list"
+              aria-label="Spécialités de la maison"
+            >
+              <li class="menu-item reveal" data-cat="poulet">
+                <article class="menu-item__card">
+                  <div class="menu-item__media">
+                    <img
+                      src="assets/POULET BRAISE.jpg"
+                      alt="Poulet tracé entier braisé à la braise, servi avec attiéké et piment"
+                      width="448"
+                      height="336"
+                      loading="eager"
+                      decoding="async"
+                    />
+                    <span class="menu-item__num" aria-hidden="true">1</span>
+                    <span class="tag">Spécialité</span>
+                  </div>
+                  <h4 class="menu-item__title">Poulet tracé</h4>
+                  <p class="menu-item__desc">
+                    La signature de la maison : poulet découpé, assaisonné et
+                    braisé à la braise, servi avec attiéké et piment.
+                  </p>
+                  <div class="menu-item__portion">
+                    <span
+                      class="menu-item__portion-label"
+                      id="portion-poulet-trace-label"
+                      >Portion</span
+                    >
+                    <div
+                      class="portion-toggle"
+                      data-portion
+                      role="group"
+                      aria-labelledby="portion-poulet-trace-label"
+                    >
+                      <button
+                        type="button"
+                        class="portion-toggle__btn is-active"
+                        aria-pressed="true"
+                        data-value="entier"
+                      >
+                        Poulet entier
+                      </button>
+                      <button
+                        type="button"
+                        class="portion-toggle__btn"
+                        aria-pressed="false"
+                        data-value="demi"
+                      >
+                        Demi-poulet
+                      </button>
+                    </div>
+                  </div>
+                  <div class="menu-item__buy">
+                    <span class="menu-item__price">
+                      <strong>5&nbsp;000</strong> F&nbsp;CFA
+                    </span>
+                    <button
+                      class="menu-item__add"
+                      type="button"
+                      data-add="poulet-trace"
+                      data-nom="Poulet tracé"
+                      data-prix="5000"
+                      data-img="assets/POULET BRAISE.jpg"
+                      data-desc="Servi avec attiéké &amp; piment"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-cart" />
+                      </svg>
+                      <span>Ajouter</span>
+                    </button>
+                  </div>
+                </article>
+              </li>
+              <li class="menu-item reveal" data-cat="poulet">
+                <article class="menu-item__card">
+                  <div class="menu-item__media">
+                    <img
+                      src="assets/POULET BRAISE.jpg"
+                      alt="Poulet grillé doré à la braise"
+                      width="448"
+                      height="336"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span class="menu-item__num" aria-hidden="true">2</span>
+                  </div>
+                  <h4 class="menu-item__title">Poulet sauté ou grillé</h4>
+                  <p class="menu-item__desc">
+                    Le même poulet bien goûteux, au choix : sauté en sauce
+                    savoureuse ou grillé.
+                  </p>
+                  <div class="menu-item__portion">
+                    <span
+                      class="menu-item__portion-label"
+                      id="portion-poulet-saute-label"
+                      >Portion</span
+                    >
+                    <div
+                      class="portion-toggle"
+                      data-portion
+                      role="group"
+                      aria-labelledby="portion-poulet-saute-label"
+                    >
+                      <button
+                        type="button"
+                        class="portion-toggle__btn is-active"
+                        aria-pressed="true"
+                        data-value="entier"
+                      >
+                        Poulet entier
+                      </button>
+                      <button
+                        type="button"
+                        class="portion-toggle__btn"
+                        aria-pressed="false"
+                        data-value="demi"
+                      >
+                        Demi-poulet
+                      </button>
+                    </div>
+                  </div>
+                  <div class="menu-item__buy">
+                    <span class="menu-item__price">
+                      <strong>5&nbsp;000</strong> F&nbsp;CFA
+                    </span>
+                    <button
+                      class="menu-item__add"
+                      type="button"
+                      data-add="poulet-saute"
+                      data-nom="Poulet sauté ou grillé"
+                      data-prix="5000"
+                      data-img="assets/POULET BRAISE.jpg"
+                      data-desc="Au choix : sauté ou grillé"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-cart" />
+                      </svg>
+                      <span>Ajouter</span>
+                    </button>
+                  </div>
+                </article>
+              </li>
+              <li class="menu-item reveal" data-cat="poisson">
+                <article class="menu-item__card">
+                  <div class="menu-item__media">
+                    <img
+                      src="assets/SOUPE POISSON.jpg"
+                      alt="Soupe de poisson servie chez O'Poulet Tracé Plus"
+                      width="448"
+                      height="336"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span class="menu-item__num" aria-hidden="true">3</span>
+                  </div>
+                  <h4 class="menu-item__title">Soupe de poisson</h4>
+                  <p class="menu-item__desc">
+                    Mijotée maison, bien relevée — l'un des plats mis en avant
+                    sur notre carte.
+                  </p>
+                  <div class="menu-item__buy">
+                    <span class="menu-item__price">
+                      <strong>3&nbsp;500</strong> F&nbsp;CFA
+                    </span>
+                    <button
+                      class="menu-item__add"
+                      type="button"
+                      data-add="soupe-poisson"
+                      data-nom="Soupe de poisson"
+                      data-prix="3500"
+                      data-img="assets/SOUPE POISSON.jpg"
+                      data-desc="Mijotée maison, bien relevée"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-cart" />
+                      </svg>
+                      <span>Ajouter</span>
+                    </button>
+                  </div>
+                </article>
+              </li>
+              <li class="menu-item reveal" data-cat="poisson">
+                <article class="menu-item__card">
+                  <div class="menu-item__media">
+                    <img
+                      src="assets/POISSON BRAISE.jpg"
+                      alt="Poisson entier braisé, salade d'oignons et tomates"
+                      width="448"
+                      height="336"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span class="menu-item__num" aria-hidden="true">4</span>
+                  </div>
+                  <h4 class="menu-item__title">Poisson braisé</h4>
+                  <p class="menu-item__desc">
+                    Braisé à la braise, servi avec salade d'oignons-tomates et
+                    accompagnement.
+                  </p>
+                  <div class="menu-item__buy">
+                    <span class="menu-item__price">
+                      <strong>6&nbsp;000</strong> F&nbsp;CFA
+                    </span>
+                    <button
+                      class="menu-item__add"
+                      type="button"
+                      data-add="poisson-braise"
+                      data-nom="Poisson braisé"
+                      data-prix="6000"
+                      data-img="assets/POISSON BRAISE.jpg"
+                      data-desc="Salade oignons-tomates &amp; accompagnement"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-cart" />
+                      </svg>
+                      <span>Ajouter</span>
+                    </button>
+                  </div>
+                </article>
+              </li>
+              <li class="menu-item reveal" data-cat="braises">
+                <article class="menu-item__card">
+                  <div class="menu-item__media">
+                    <img
+                      src="assets/ESCARGOT SAUTE.jpg"
+                      alt="Escargots sautés servis en sauce"
+                      width="448"
+                      height="336"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span class="menu-item__num" aria-hidden="true">5</span>
+                  </div>
+                  <h4 class="menu-item__title">
+                    Escargots sautés &amp; grillés
+                  </h4>
+                  <p class="menu-item__desc">
+                    Un plat d'initiés de la carte : escargots sautés en sauce ou
+                    grillés à la braise.
+                  </p>
+                  <div class="menu-item__buy">
+                    <span class="menu-item__price">
+                      <strong>4&nbsp;500</strong> F&nbsp;CFA
+                    </span>
+                    <button
+                      class="menu-item__add"
+                      type="button"
+                      data-add="escargots-sautes"
+                      data-nom="Escargots sautés &amp; grillés"
+                      data-prix="4500"
+                      data-img="assets/ESCARGOT SAUTE.jpg"
+                      data-desc="Au choix : sautés ou grillés"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-cart" />
+                      </svg>
+                      <span>Ajouter</span>
+                    </button>
+                  </div>
+                </article>
+              </li>
+              <li class="menu-item reveal" data-cat="braises">
+                <article class="menu-item__card">
+                  <div class="menu-item__media">
+                    <img
+                      src="assets/cabri-saute.jpg"
+                      alt="Cabri sauté en sauce servi sur assiette"
+                      width="448"
+                      height="336"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span class="menu-item__num" aria-hidden="true">6</span>
+                  </div>
+                  <h4 class="menu-item__title">Cabri grillé &amp; sauté</h4>
+                  <p class="menu-item__desc">
+                    Viande généreuse et parfumée : grillée à la braise ou sautée
+                    en sauce.
+                  </p>
+                  <div class="menu-item__buy">
+                    <span class="menu-item__price">
+                      <strong>5&nbsp;500</strong> F&nbsp;CFA
+                    </span>
+                    <button
+                      class="menu-item__add"
+                      type="button"
+                      data-add="cabri-grille"
+                      data-nom="Cabri grillé &amp; sauté"
+                      data-prix="5500"
+                      data-img="assets/cabri-saute.jpg"
+                      data-desc="Viande généreuse et parfumée"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-cart" />
+                      </svg>
+                      <span>Ajouter</span>
+                    </button>
+                  </div>
+                </article>
+              </li>
+              <li class="menu-item reveal" data-cat="braises">
+                <article class="menu-item__card">
+                  <div class="menu-item__media">
+                    <img
+                      src="assets/AGOUTI.jpg"
+                      alt="Agouti grillé servi à la braise"
+                      width="448"
+                      height="336"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span class="menu-item__num" aria-hidden="true">7</span>
+                  </div>
+                  <h4 class="menu-item__title">Agouti grillé &amp; sauté</h4>
+                  <p class="menu-item__desc">
+                    La viande fétiche des connaisseurs, préparée grillée ou
+                    sautée.
+                  </p>
+                  <div class="menu-item__buy">
+                    <span class="menu-item__price">
+                      <strong>5&nbsp;000</strong> F&nbsp;CFA
+                    </span>
+                    <button
+                      class="menu-item__add"
+                      type="button"
+                      data-add="agouti-grille"
+                      data-nom="Agouti grillé &amp; sauté"
+                      data-prix="5000"
+                      data-img="assets/AGOUTI.jpg"
+                      data-desc="La viande fétiche des connaisseurs"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-cart" />
+                      </svg>
+                      <span>Ajouter</span>
+                    </button>
+                  </div>
+                </article>
+              </li>
+            </ol>
+
+            <p class="menu__formule-note">
+              La carte affiche les spécialités ci-dessus — « Le plaisir de
+              toujours bien manger ». Prix <strong>indicatifs</strong> : la
+              maison confirme le total sur WhatsApp avant préparation.
+            </p>
+          </div>
+
+          <!-- ——— La carte officielle en image ——— -->
+          <figure class="menu-card reveal">
+            <a
+              href="assets/menu-card.jpg"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ouvrir la carte officielle en grand"
+            >
+              <img
+                src="assets/menu-card.jpg"
+                alt="La carte officielle d'O'Poulet Tracé Plus chez Alain : poulet tracé, poulet sauté ou grillé, soupe de poisson et braisé, escargots sautés et grillés, cabri et agouti — le plaisir de toujours bien manger"
+                loading="lazy"
+                width="900"
+                height="900"
+              />
+            </a>
+            <figcaption>
+              La carte officielle de la maison — cliquez pour l'agrandir.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- SECTION 4 : GALERIE PANORAMIQUE INCURVÉE                    -->
+      <!-- ======================================================== -->
+      <!-- Bandeau pleine largeur : clip-path ellipse + marquee infini                        -->
+      <!-- ======================================================== -->
+      <section
+        class="section galerie"
+        id="galerie"
+        aria-labelledby="galerie-title"
+      >
+        <div class="container">
+          <div class="galerie__head">
+            <p class="eyebrow reveal">Galerie</p>
+            <h2 id="galerie-title" class="reveal reveal--d1">
+              Un avant-goût de <em class="accent-italic">la maison</em>
+            </h2>
+            <p class="galerie__intro reveal reveal--d2">
+              Plats braisés et ambiance du restaurant.
+            </p>
+          </div>
+        </div>
+        <!-- /.container : l'en-tête reste cadré ; le bandeau sort du conteneur pour être bord à bord -->
+
+        <!-- Bandeau panoramique bord à bord :
+           masque incurvé « lentille » (clip-path ellipse) + piste animée (marquee).
+           role=region + tabindex : défile au clavier ; au focus, l'animation se met en pause. -->
+        <div
+          class="panorama"
+          role="region"
+          tabindex="0"
+          aria-label="Bandeau défilant de photos du restaurant ; l'animation se met en pause au survol et à la prise de focus."
+        >
+          <div class="panorama__track">
+            <!-- JEU ORIGINAL — première moitié de la piste -->
+            <figure class="panorama__item">
+              <img
+                src="assets/POULET BRAISE.jpg"
+                alt="Poulet tracé entièrement braisé servi sur plateau avec attiéké et sauce piment"
+                width="1194"
+                height="1600"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">Le poulet tracé</figcaption>
+            </figure>
+            <figure class="panorama__item">
+              <img
+                src="assets/POISSON BRAISE.jpg"
+                alt="Deux poissons braisés servis avec salade d'oignons, tomates, attiéké et sauce piment"
+                width="1194"
+                height="1600"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">Poisson braisé</figcaption>
+            </figure>
+            <figure class="panorama__item">
+              <img
+                src="assets/ESCARGOT SAUTE.jpg"
+                alt="Escargots sautés de la maison"
+                width="1600"
+                height="1600"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">
+                Escargots sautés
+              </figcaption>
+            </figure>
+            <figure class="panorama__item">
+              <img
+                src="assets/g-terrasse.jpg"
+                alt="La terrasse d'O'Poulet Tracé Plus le soir : enseigne lumineuse et tables autour de la braise"
+                width="850"
+                height="939"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">La terrasse</figcaption>
+            </figure>
+            <figure class="panorama__item">
+              <img
+                src="assets/g-cadre.jpg"
+                alt="L'intérieur du restaurant : tables basses, bancs, guirlandes et fresque colorée"
+                width="850"
+                height="901"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">Le cadre</figcaption>
+            </figure>
+            <figure class="panorama__item">
+              <img
+                src="assets/SOUPE POISSON.jpg"
+                alt="Soupe de poisson servie chez O'Poulet Tracé Plus"
+                width="1600"
+                height="894"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">
+                Soupe de poisson
+              </figcaption>
+            </figure>
+            <figure class="panorama__item">
+              <img
+                src="assets/AGOUTI.jpg"
+                alt="Agouti préparé à la braise"
+                width="894"
+                height="1600"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">Agouti braisé</figcaption>
+            </figure>
+            <figure class="panorama__item">
+              <img
+                src="assets/hero-salle.jpg"
+                alt="Ambiance chaleureuse de la salle du restaurant"
+                width="1600"
+                height="1250"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">L'ambiance</figcaption>
+            </figure>
+            <figure class="panorama__item">
+              <img
+                src="assets/Ambiance.jpg"
+                alt="Ambiance du restaurant"
+                width="1194"
+                height="1600"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">Ambiance</figcaption>
+            </figure>
+
+            <!-- COPIE CONFORME DU JEU — seconde moitié de la piste (aria-hidden : masquée aux lecteurs d'écran).
+               Obligatoire : la boucle @keyframes marquee repasse par translateX(-50%) → 0
+               exactement quand cette copie atteint la position du jeu original. -->
+            <figure class="panorama__item" aria-hidden="true">
+              <img
+                src="assets/POULET BRAISE.jpg"
+                alt="Poulet tracé entièrement braisé servi sur plateau avec attiéké et sauce piment"
+                width="1194"
+                height="1600"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">Le poulet tracé</figcaption>
+            </figure>
+            <figure class="panorama__item" aria-hidden="true">
+              <img
+                src="assets/POISSON BRAISE.jpg"
+                alt="Deux poissons braisés servis avec salade d'oignons, tomates, attiéké et sauce piment"
+                width="1194"
+                height="1600"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">Poisson braisé</figcaption>
+            </figure>
+            <figure class="panorama__item" aria-hidden="true">
+              <img
+                src="assets/ESCARGOT SAUTE.jpg"
+                alt="Escargots sautés de la maison"
+                width="1600"
+                height="1600"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">
+                Escargots sautés
+              </figcaption>
+            </figure>
+            <figure class="panorama__item" aria-hidden="true">
+              <img
+                src="assets/g-terrasse.jpg"
+                alt="La terrasse d'O'Poulet Tracé Plus le soir : enseigne lumineuse et tables autour de la braise"
+                width="850"
+                height="939"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">La terrasse</figcaption>
+            </figure>
+            <figure class="panorama__item" aria-hidden="true">
+              <img
+                src="assets/g-cadre.jpg"
+                alt="L'intérieur du restaurant : tables basses, bancs, guirlandes et fresque colorée"
+                width="850"
+                height="901"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">Le cadre</figcaption>
+            </figure>
+            <figure class="panorama__item" aria-hidden="true">
+              <img
+                src="assets/SOUPE POISSON.jpg"
+                alt="Soupe de poisson servie chez O'Poulet Tracé Plus"
+                width="1600"
+                height="894"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">
+                Soupe de poisson
+              </figcaption>
+            </figure>
+            <figure class="panorama__item" aria-hidden="true">
+              <img
+                src="assets/AGOUTI.jpg"
+                alt="Agouti préparé à la braise"
+                width="894"
+                height="1600"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">Agouti braisé</figcaption>
+            </figure>
+            <figure class="panorama__item" aria-hidden="true">
+              <img
+                src="assets/hero-salle.jpg"
+                alt="Ambiance chaleureuse de la salle du restaurant"
+                width="1600"
+                height="1250"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">L'ambiance</figcaption>
+            </figure>
+            <figure class="panorama__item" aria-hidden="true">
+              <img
+                src="assets/Ambiance.jpg"
+                alt="Ambiance du restaurant"
+                width="1194"
+                height="1600"
+                loading="lazy"
+              />
+              <figcaption class="panorama__caption">Ambiance</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- SECTION 5 : INFOS PRATIQUES                               -->
+      <!-- ======================================================== -->
+      <section class="section contact" id="contact">
+        <div class="container">
+          <div class="contact__head">
+            <p class="eyebrow reveal">Infos pratiques</p>
+            <h2 class="reveal reveal--d1">
+              Viens nous <em class="accent-italic">voir</em>
+            </h2>
+          </div>
+
+          <div class="contact__grid">
+            <div class="info-card reveal">
+              <span class="info-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><use href="#icon-pin" /></svg>
+              </span>
+              <h3>Adresse</h3>
+              <div class="info-card__locals">
+                <div class="local">
+                  <p class="local__tag">Local 1 — Quartier Thérèse</p>
+                  <p>
+                    Derrière la Nouvelle CNPS<br />
+                    Yamoussoukro — Côte d'Ivoire
+                  </p>
+                  <a
+                    class="info-card__link"
+                    href="https://www.google.com/maps/search/?api=1&amp;query=O%27poulet%20Trac%C3%A9%20Plus%2C%20derri%C3%A8re%20la%20Nouvelle%20CNPS%2C%20Yamoussoukro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ouvrir le local 1, derrière la Nouvelle CNPS, dans Google Maps"
+                  >
+                    Ouvrir dans Google Maps
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+                <div class="local">
+                  <p class="local__tag">Local 2 — Quartier Asabou</p>
+                  <p>
+                    En face de l'hôtel Nara<br />
+                    Yamoussoukro — Côte d'Ivoire
+                  </p>
+                  <a
+                    class="info-card__link"
+                    href="https://www.google.com/maps/place/?q=place_id:ChIJXftUQwCRuA8RHOK51sSPm6k"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ouvrir le local 2, quartier Asabou, dans Google Maps"
+                  >
+                    Ouvrir dans Google Maps
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-card reveal reveal--d1">
+              <span class="info-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><use href="#icon-clock" /></svg>
+              </span>
+              <h3>Horaires</h3>
+              <table class="horaires">
+                <tbody>
+                  <tr>
+                    <th scope="row">Local 1 (CNPS)</th>
+                    <td>24&nbsp;h&nbsp;/&nbsp;24, 7&nbsp;j&nbsp;/&nbsp;7</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Local 2 (Asabou)</th>
+                    <td>17&nbsp;h&nbsp;00 – 22&nbsp;h&nbsp;30</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Jours fériés</th>
+                    <td>Ouvert, comme toujours</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="status status--open" role="status">
+                <span class="status__dot" aria-hidden="true"></span>
+                <span class="status__text"
+                  >Ouvert maintenant · la maison ne ferme jamais</span
+                >
+              </p>
+            </div>
+
+            <div class="info-card reveal reveal--d2">
+              <span class="info-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><use href="#icon-phone" /></svg>
+              </span>
+              <h3>Contact</h3>
+              <p>
+                Téléphone / WhatsApp :<br />
+                <a class="info-card__phone" href="tel:+2250708318118"
+                  >07&nbsp;08&nbsp;31&nbsp;81&nbsp;18</a
+                ><br />
+                <br />
+                <a
+                  class="btn btn--wa"
+                  href="https://wa.me/2250708318118?text=Bonjour%20O%27Poulet%20Trac%C3%A9%20Plus%20!%20Je%20voudrais%20commander."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    class="wa-glyph"
+                    src="assets/wa-logo-white.png"
+                    alt=""
+                    width="20"
+                    height="20"
+                    loading="lazy"
+                  />
+                  Écrire sur WhatsApp
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Cartes Google Maps (intégrées, sans clé API) : les 2 locaux -->
+          <div class="maps reveal">
+            <div class="map">
+              <p class="map__label">Local 1 · Quartier Thérèse — CNPS</p>
+              <iframe
+                class="map__frame"
+                src="https://maps.google.com/maps?q=O%27poulet%20Trac%C3%A9%20Plus%2C%20derri%C3%A8re%20la%20Nouvelle%20CNPS%2C%20Yamoussoukro&amp;z=16&amp;hl=fr&amp;output=embed"
+                title="Carte : O'Poulet Tracé Plus — derrière la Nouvelle CNPS, Yamoussoukro"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <div class="map">
+              <p class="map__label">Local 2 · Quartier Asabou — Hôtel Nara</p>
+              <iframe
+                class="map__frame"
+                src="https://maps.google.com/maps?q=O%27poulet%20trac%C3%A9%202%2C%20Yamoussoukro&amp;hl=fr&amp;output=embed"
+                title="Carte : O'Poulet Tracé 2 — en face de l'hôtel Nara, Yamoussoukro"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BANDEAU CTA FINAL -->
+      <section class="bandeau" aria-label="Appel à commander">
+        <div class="container bandeau__inner">
+          <div>
+            <h2 class="bandeau__title">Une petite faim&nbsp;?</h2>
+            <p class="bandeau__text">
+              Ecrivez nous. Votre plat n'est qu'à un clic.
+            </p>
+          </div>
+          <a
+            class="btn btn--wa btn--lg"
+            href="https://wa.me/2250708318118?text=Bonjour%20O%27Poulet%20Trac%C3%A9%20Plus%20!%20Je%20voudrais%20commander."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              class="wa-glyph"
+              src="assets/wa-logo-white.png"
+              alt=""
+              width="20"
+              height="20"
+              loading="lazy"
+            />
+            Commander sur WhatsApp
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER                                                        -->
+    <!-- ============================================================ -->
+    <footer class="footer" id="mentions">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <a
+            class="navbar__logo"
+            href="#accueil"
+            aria-label="O'Poulet Tracé Plus — retour à l'accueil"
+          >
+            <span class="logo-badge" aria-hidden="true">
+              <img
+                src="assets/logo.jpg"
+                alt=""
+                width="46"
+                height="46"
+                loading="lazy"
+                decoding="async"
+              />
+            </span>
+            <span class="logo-word"
+              >O'Poulet<small class="logo-sub">Tracé&nbsp;Plus</small></span
+            >
+          </a>
+          <p>
+            Poulet tracé, poissons braisés, escargots, cabri et agouti,<br />derrière
+            la Nouvelle CNPS de Yamoussoukro.
+          </p>
+          <ul class="footer__social" role="list">
+            <li>
+              <a
+                class="social-wa"
+                href="https://wa.me/2250708318118?text=Bonjour%20O%27Poulet%20Trac%C3%A9%20Plus%20!%20Je%20voudrais%20commander."
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp d'O'Poulet Tracé Plus"
+                title="WhatsApp 07 08 31 81 18"
+              >
+                <img
+                  class="wa-glyph"
+                  src="assets/wa-logo-green.png"
+                  alt=""
+                  width="22"
+                  height="22"
+                  loading="lazy"
+                />
+              </a>
+            </li>
+            <li>
+              <a
+                href="tel:+2250708318118"
+                aria-label="Appeler O'Poulet Tracé Plus"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-phone" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                class="social-svg"
+                href="https://www.tiktok.com/@poulet.trace.plus"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok — visitez notre page @poulet.trace.plus"
+                title="Retrouvez-nous sur TikTok"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-tiktok" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                class="social-svg"
+                href="https://www.facebook.com/share/1A81Wv2vh4/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook — visitez notre page officielle"
+                title="Retrouvez-nous sur Facebook"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-facebook" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <nav class="footer__nav" aria-label="Liens de pied de page">
+          <h3>Navigation</h3>
+          <ul role="list">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#a-propos">À propos</a></li>
+            <li><a href="#menu">Notre carte</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#contact">Infos pratiques</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer__legal">
+          <h3>Mentions légales</h3>
+          <p>
+            O'Poulet Tracé Plus (Chez Alain) — derrière la Nouvelle CNPS,
+            quartier Thérèse, Yamoussoukro, Côte d'Ivoire —
+            <a href="tel:+2250708318118">07&nbsp;08&nbsp;31&nbsp;81&nbsp;18</a
+            ><br />
+            Responsable de la publication : O'Poulet Tracé Plus.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div class="container">
+          <p>
+            © <span id="annee">2026</span> O'Poulet Tracé Plus — Tous droits
+            réservés. OTHNIEL.DEV
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- BOUTON WHATSAPP FLOTTANT                                      -->
+    <!-- ============================================================ -->
+    <a
+      class="wa-fab"
+      href="https://wa.me/2250708318118?text=Bonjour%20O%27Poulet%20Trac%C3%A9%20Plus%20!%20Je%20voudrais%20commander."
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Commander sur WhatsApp"
+    >
+      <span class="wa-fab__ring" aria-hidden="true"></span>
+      <img
+        class="wa-glyph"
+        src="assets/wa-logo-green.png"
+        alt="WhatsApp"
+        width="256"
+        height="256"
+        loading="lazy"
+      />
+    </a>
+
+    <!-- ============================================================ -->
+    <!-- PANIER — modale « shopping cart » (design épuré, carte crème)  -->
+    <!-- Ouvrante : bouton navbar .cart-open-btn + .menu-cartline__btn  -->
+    <!-- Fermant  : voile, croix, ancre [data-cart-close], touche Échap -->
+    <!-- ============================================================ -->
+    <div class="cart" id="panier" aria-hidden="true">
+      <div class="cart__backdrop" data-cart-close></div>
+
+      <div
+        class="cart__sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="panier-title"
+      >
+        <div class="cart__card">
+          <!-- Barre haute : marque + actions -->
+          <div class="cart__topbar">
+            <span class="cart__brand">
+              <span class="logo-badge" aria-hidden="true">
+                <img
+                  src="assets/logo.jpg"
+                  alt=""
+                  width="46"
+                  height="46"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </span>
+              <span class="logo-word"
+                >O'Poulet<small class="logo-sub">Tracé&nbsp;Plus</small></span
+              >
+            </span>
+            <div class="cart__topbar-actions">
+              <a class="cart__pill" href="#menu" data-cart-close
+                >Continuer mes achats</a
+              >
+              <button
+                class="cart__close"
+                type="button"
+                data-cart-close
+                aria-label="Fermer le panier"
+              >
+                <span></span><span></span>
+              </button>
+            </div>
+          </div>
+
+          <h2 class="cart__title" id="panier-title">
+            Votre <em class="accent-italic">panier</em>
+            <span class="cart__title-count" id="cart-title-count"
+              >0 article</span
+            >
+          </h2>
+
+          <div class="cart__grid">
+            <!-- ============ Colonne gauche : liste des plats ============ -->
+            <div class="cart__left">
+              <section
+                class="cart-card cart-card--items"
+                aria-labelledby="cart-items-title"
+              >
+                <h3 class="sr-only" id="cart-items-title">Plats sélectionnés</h3>
+                <!-- En-têtes discrets (masqués sur mobile → grille verticale) -->
+                <div class="cart-row cart-row--head" aria-hidden="true">
+                  <span>Plat</span>
+                  <span class="th-qte">Quantité</span>
+                  <span class="th-total">Total</span>
+                  <span class="th-action">Action</span>
+                </div>
+
+                <ul class="cart-list" id="cart-list" role="list">
+                  <!-- Rendu dynamique par script.js (renderCart) -->
+                </ul>
+
+                <!-- État vide -->
+                <div class="cart-empty" id="cart-empty" hidden>
+                  <span class="cart-empty__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><use href="#icon-cart" /></svg>
+                  </span>
+                  <p class="cart-empty__title">Votre panier est vide</p>
+                  <p class="cart-empty__text">
+                    Ajoutez un braisé depuis la carte&nbsp;: poulet tracé,
+                    poisson, escargots, cabri…
+                  </p>
+                  <a class="cart-empty__cta" href="#menu" data-cart-close
+                    >Découvrir la carte</a
+                  >
+                </div>
+              </section>
+
+              <div class="cart__left-foot">
+                <button class="cart__clear" id="cart-clear" type="button">
+                  Vider le panier
+                </button>
+              </div>
+            </div>
+
+            <!-- ============ Colonne droite : résumé de la commande ============ -->
+            <aside
+              class="cart-card cart-card--summary"
+              aria-label="Résumé de la commande"
+            >
+              <h3 class="cart-summary__title">Résumé de la commande</h3>
+
+              <label class="cart-field">
+                <span class="cart-field__label"
+                  >Précisions ou adresse de livraison</span
+                >
+                <textarea
+                  id="cart-notes"
+                  rows="3"
+                  name="cart-notes"
+                  placeholder="Ex.&nbsp;: poulet bien pimenté, un attiéké… livrer derrière la Nouvelle CNPS"
+                ></textarea>
+              </label>
+
+              <dl class="cart-totals">
+                <div class="cart-totals__row">
+                  <dt>Sous-total</dt>
+                  <dd id="cart-subtotal">0&nbsp;F</dd>
+                </div>
+                <div class="cart-totals__row">
+                  <dt>Frais de livraison</dt>
+                  <dd class="cart-totals__pending">À convenir</dd>
+                </div>
+                <div class="cart-totals__row cart-totals__row--total">
+                  <dt>Total</dt>
+                  <dd id="cart-total">0&nbsp;F</dd>
+                </div>
+              </dl>
+              <p class="cart-totals__caption">Total hors livraison.</p>
+
+              <p class="cart-summary__note">
+                <span class="cart-summary__dot" aria-hidden="true"></span>
+                Prix indicatifs&nbsp;: la maison confirme le total sur WhatsApp
+                avant de préparer la braise.
+              </p>
+
+              <button
+                class="cart__checkout"
+                id="cart-checkout"
+                type="button"
+                disabled
+              >
+                <img
+                  class="wa-glyph"
+                  src="assets/wa-logo-white.png"
+                  alt=""
+                  width="20"
+                  height="20"
+                  loading="lazy"
+                />
+                <span>Commander via WhatsApp</span>
+              </button>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast « ajout au panier » (retour visuel, aria-live) -->
+    <div class="cart-toast" id="cart-toast" role="status" aria-live="polite">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <use href="#icon-cart" />
+      </svg>
+      <span id="cart-toast-text"></span>
+    </div>
+
+    <!-- Annonce vocale du panier (hors de la modale, toujours disponible) -->
+    <p class="sr-only" id="cart-live" role="status" aria-live="polite"></p>
+
+    <script src="script.js"></script>
+  </body>
+</html>

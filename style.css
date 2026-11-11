@@ -1,0 +1,4380 @@
+/* ============================================================
+   O'POULET TRACÉ PLUS — Feuille de style v3
+   Brasserie éditoriale ivoirienne · Mobile-first
+   Fraunces (display) + Work Sans (corps) + Barlow Condensed (étiquettes)
+   ============================================================ */
+
+/* ---------- 1. DESIGN TOKENS ---------- */
+:root {
+  --bg: #f4ecd8;
+  --bg-alt: #eae0c9;
+  --surface: #fffbf2;
+  --ink: #1e130b;
+  --ink-2: #2e2014;
+  --ink-soft: #5c4a3a;
+  --ink-mute: #8b7a68;
+  --brass: #b8722e;
+  --brass-dark: #8a5420;
+  --brass-deep: #6b3410;
+  --brass-soft: #eadbc2;
+  --fire: #c23a2b;
+  --fire-soft: #f4dfd8;
+  --wa: #25d366;
+  --wa-strong: #1ba75a;
+  --wa-dark: #128a41;
+
+  /* Canaux RGB : couleurs translucides centralisées */
+  --ink-rgb: 30, 19, 11;
+  --bg-rgb: 244, 236, 216;
+  --surface-rgb: 255, 251, 242;
+  --brass-rgb: 184, 114, 46;
+  --fire-rgb: 194, 58, 43;
+  --wa-rgb: 27, 167, 90;
+  --wa-dark-rgb: 18, 138, 65;
+  --wa-icon-rgb: 37, 211, 102;
+  --white-rgb: 255, 255, 255;
+  --footer-rgb: 217, 200, 175;
+
+  /* Couleurs sémantiques */
+  --white: #fff;
+  --cream-strong: #fff9ee;
+  --cream-soft: #f3e2c4;
+  --brass-light: #e8b577;
+  --brass-hover: #d08a42;
+  --hero-dark: #1a0f09;
+  --footer-text: #d9c8af;
+
+  /* Bordures réutilisables */
+  --border-faint: 1px solid rgba(var(--ink-rgb), 0.06);
+  --border-soft: 1px solid rgba(var(--ink-rgb), 0.08);
+  --border-hair: 1px solid rgba(var(--ink-rgb), 0.09);
+  --border-strong: 1px solid rgba(var(--ink-rgb), 0.2);
+  --border-brass-soft: 1px solid rgba(var(--brass-rgb), 0.2);
+  --border-brass: 1px solid rgba(var(--brass-rgb), 0.35);
+
+  /* Espacements et rayons sémantiques */
+  --space-2xs: 0.3rem;
+  --space-xs: 0.55rem;
+  --space-sm: 0.8rem;
+  --space-md: 1.3rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --r-menu: 16px;
+  --r-xl: 24px;
+  --overlay-hero: linear-gradient(
+    180deg,
+    rgba(var(--ink-rgb), 0.55) 0%,
+    rgba(var(--ink-rgb), 0.3) 45%,
+    rgba(var(--ink-rgb), 0.82) 100%
+  );
+  --shadow-xs: 0 1px 2px rgba(var(--ink-rgb), 0.06);
+  --shadow-sm: 0 2px 8px -2px rgba(var(--ink-rgb), 0.1);
+  --shadow-md:
+    0 6px 20px -8px rgba(var(--ink-rgb), 0.14), 0 2px 6px rgba(var(--ink-rgb), 0.06);
+  --shadow-lg:
+    0 24px 48px -20px rgba(var(--ink-rgb), 0.32),
+    0 8px 18px -6px rgba(var(--ink-rgb), 0.1);
+  --r-xs: 4px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-full: 999px;
+  --nav-h: 68px;
+  --dur-fast: 180ms;
+  --dur-slow: 420ms;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ---------- 2. RESET ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  font-feature-settings: "ss01", "ss02";
+}
+body {
+  margin: 0;
+  font-family:
+    "Work Sans",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+  overflow-x: hidden;
+  font-feature-settings: "ss01";
+  -webkit-font-smoothing: antialiased;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0 0 0.6em;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  font-optical-sizing: auto;
+}
+h1 {
+  font-weight: 700;
+  font-variation-settings:
+    "SOFT" 50,
+    "WONK" 0;
+}
+p {
+  margin: 0 0 1rem;
+}
+ul[role="list"],
+ol[role="list"],
+ul[role="list"] li,
+ol[role="list"] li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+}
+a {
+  color: var(--brass-dark);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+a:hover {
+  color: var(--fire);
+}
+::selection {
+  background: var(--brass);
+  color: var(--white);
+}
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- 3. UTILITAIRES ---------- */
+.container {
+  width: min(1180px, 100% - clamp(2rem, 6vw, 5rem));
+  margin-inline: auto;
+}
+.section {
+  padding-block: clamp(4.5rem, 9vw, 7rem);
+}
+section[id],
+#mentions {
+  scroll-margin-top: calc(var(--nav-h) + 12px);
+}
+.eyebrow {
+  display: inline-block;
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: var(--brass-dark);
+  margin-bottom: 0.7rem;
+}
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 22px;
+  height: 1px;
+  background: var(--brass);
+  vertical-align: 0.28em;
+  margin-right: 0.6rem;
+}
+h2 {
+  font-size: clamp(2rem, 4.6vw, 3.2rem);
+  text-wrap: balance;
+  font-variation-settings: "SOFT" 50;
+}
+h2 em,
+.accent-italic {
+  font-style: italic;
+  color: var(--brass-dark);
+  font-variation-settings: "SOFT" 100;
+}
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.5rem;
+  z-index: 200;
+  padding: 0.6rem 1rem;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: var(--r-sm);
+  text-decoration: none;
+  transform: translateY(-300%);
+  transition: transform var(--dur-fast) var(--ease);
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+.link-plain {
+  color: inherit;
+  font-weight: 600;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- 4. BOUTONS ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.82rem 1.5rem;
+  border: 0;
+  border-radius: var(--r-sm);
+  font-family: "Work Sans", sans-serif;
+  font-weight: 600;
+  font-size: 0.92rem;
+  line-height: 1.2;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn--wa {
+  background: var(--wa-strong);
+  color: var(--white);
+  box-shadow:
+    var(--shadow-sm),
+    0 6px 14px -6px rgba(var(--wa-rgb), 0.55);
+}
+.btn--wa:hover,
+.btn--wa:focus-visible {
+  background: var(--wa-dark);
+  transform: translateY(-2px);
+  box-shadow:
+    var(--shadow-md),
+    0 10px 22px -8px rgba(var(--wa-rgb), 0.55);
+}
+.btn--lg {
+  padding: 1rem 1.8rem;
+  font-size: 0.98rem;
+  border-radius: var(--r-sm);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid rgba(var(--ink-rgb), 0.25);
+}
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background: rgba(var(--ink-rgb), 0.06);
+  border-color: rgba(var(--ink-rgb), 0.45);
+  color: var(--ink);
+}
+.btn--light.btn--ghost {
+  color: var(--white);
+  border-color: rgba(var(--white-rgb), 0.4);
+}
+.btn--light.btn--ghost:hover {
+  background: rgba(var(--white-rgb), 0.12);
+  border-color: rgba(var(--white-rgb), 0.7);
+  color: var(--white);
+}
+.wa-mini.is-ordered {
+  background: var(--ink);
+  transform: scale(1.08);
+}
+.wa-glyph {
+  width: 1.15em;
+  height: 1.15em;
+  flex-shrink: 0;
+  display: block;
+  object-fit: contain;
+}
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+/* ---------- 5. NAVBAR ---------- */
+.navbar {
+  position: fixed;
+  inset: 0 0 auto;
+  height: var(--nav-h);
+  z-index: 100;
+  background: rgba(var(--bg-rgb), 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: background-color var(--dur-slow) var(--ease);
+}
+
+.navbar__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  position: relative;
+  padding-inline: clamp(0.75rem, 4vw, 2.5rem);
+}
+
+.navbar__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  color: var(--ink);
+  transition: color var(--dur-fast) var(--ease);
+  z-index: 2;
+}
+
+.logo-badge {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--brass);
+  color: var(--bg);
+  box-shadow: var(--shadow-md);
+}
+
+.logo-word {
+  font-family: "Fraunces", serif;
+  font-weight: 700;
+  font-size: 1.42rem;
+  letter-spacing: -0.01em;
+  font-variation-settings: "SOFT" 40;
+}
+
+.logo-sub {
+  display: block;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brass);
+  line-height: 1.2;
+  margin-top: 1px;
+}
+
+.navbar__nav {
+  display: none;
+  position: absolute;
+  top: calc(var(--nav-h) + 10px);
+  left: clamp(0.75rem, 4vw, 2.5rem);
+  right: clamp(0.75rem, 4vw, 2.5rem);
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.1rem;
+  background: var(--surface);
+  border: var(--border-soft);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+}
+
+.navbar__nav.is-open {
+  display: flex;
+  animation: nav-in 260ms var(--ease) both;
+}
+
+@keyframes nav-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar__nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.8rem 1.1rem;
+  border-radius: var(--r-sm);
+  color: var(--ink-soft);
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+}
+
+.nav-link:hover {
+  background: var(--brass-soft);
+  color: var(--brass-deep);
+}
+
+.nav-link.is-active {
+  background: var(--brass);
+  color: var(--bg);
+}
+.navbar__cta {
+  margin-block-start: 0.5rem;
+}
+
+/* Burger moderne — positionné à droite */
+.navbar__burger {
+  position: absolute;
+  right: clamp(0.75rem, 4vw, 2.5rem);
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background: rgba(var(--white-rgb), 0.7);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--r-sm);
+  backdrop-filter: blur(8px);
+  z-index: 2;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+.navbar__burger span {
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  background: var(--ink);
+  transition:
+    transform var(--dur-fast) var(--ease),
+    opacity var(--dur-fast) var(--ease),
+    background-color var(--dur-fast) var(--ease);
+}
+.navbar__burger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navbar__burger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.navbar__burger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* État scrolled : fond plus opaque et lisible */
+.navbar--scrolled {
+  background: rgba(var(--bg-rgb), 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.navbar--scrolled .navbar__logo,
+.navbar--scrolled .nav-link {
+  color: var(--ink);
+}
+.navbar--scrolled .nav-link.is-active {
+  background: var(--brass);
+  color: var(--bg);
+}
+.navbar--scrolled .navbar__burger {
+  background: rgba(var(--ink-rgb), 0.05);
+  border-color: rgba(var(--ink-rgb), 0.08);
+}
+.navbar--scrolled .navbar__burger span {
+  background: var(--ink);
+}
+
+/* ---------- 6. HERO ---------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  padding-block: calc(var(--nav-h) + 2.5rem) 4rem;
+  overflow: hidden;
+  color: var(--white);
+  background: var(--hero-dark);
+  isolation: isolate;
+}
+.hero__slides,
+.hero__slide {
+  position: absolute;
+  inset: 0;
+}
+.hero__slide {
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 1.4s ease-in-out;
+}
+.hero__slide--active {
+  opacity: 1;
+  animation: hero-zoom 7s ease-out forwards;
+}
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.04);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--overlay-hero);
+}
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(var(--white-rgb), 0.85);
+  margin-bottom: 1.3rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.7rem;
+  background: rgba(var(--brass-rgb), 0.22);
+  border: 1px solid rgba(var(--brass-rgb), 0.45);
+  border-radius: var(--r-full);
+  backdrop-filter: blur(6px);
+}
+.hero__eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brass);
+  box-shadow: 0 0 0 3px rgba(var(--brass-rgb), 0.3);
+}
+.hero h1 {
+  color: var(--white);
+  font-size: clamp(2.5rem, 5.4vw, 3.9rem);
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  text-wrap: balance;
+  line-height: 1.04;
+  font-variation-settings:
+    "SOFT" 70,
+    "WONK" 0;
+}
+.hero h1 .accent-italic {
+  color: var(--brass-light);
+  font-variation-settings: "SOFT" 100;
+}
+.hero__subtitle {
+  max-width: 38em;
+  margin-inline: auto;
+  margin-bottom: 2.2rem;
+  font-size: clamp(1rem, 2.2vw, 1.08rem);
+  color: rgba(var(--white-rgb), 0.82);
+  line-height: 1.7;
+}
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2.4rem;
+}
+.hero__trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 0.4rem;
+  font-size: 0.84rem;
+  color: rgba(var(--white-rgb), 0.85);
+}
+.hero__trust li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.48rem 0.96rem;
+  background: rgba(var(--ink-rgb), 0.35);
+  border: 1px solid rgba(var(--white-rgb), 0.14);
+  border-radius: var(--r-full);
+  backdrop-filter: blur(8px);
+  font-variant-numeric: tabular-nums;
+}
+.hero__trust svg {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+.trust-star {
+  color: var(--brass-light);
+}
+.hero__scroll {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 1.6rem;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-left: -22px;
+  border-radius: 50%;
+  color: var(--white);
+  background: rgba(var(--white-rgb), 0.08);
+  border: 1px solid rgba(var(--white-rgb), 0.22);
+  animation: bob 2.4s ease-in-out infinite;
+}
+.hero__scroll:hover {
+  background: rgba(var(--white-rgb), 0.16);
+}
+.hero__scroll svg {
+  width: 20px;
+  height: 20px;
+}
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+/* ---------- 7. APPARITION AU SCROLL (subtile : 8px, 350ms) ---------- */
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 350ms var(--ease),
+    transform 350ms var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+html.js .reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+.reveal--d1 {
+  --reveal-delay: 80ms;
+}
+.reveal--d2 {
+  --reveal-delay: 160ms;
+}
+.reveal--d3 {
+  --reveal-delay: 240ms;
+}
+.reveal--d4 {
+  --reveal-delay: 320ms;
+}
+
+/* ---------- 8. À PROPOS ---------- */
+.apropos {
+  background: var(--bg);
+}
+.apropos__head {
+  margin-bottom: 2.5rem; /* sépare l'en-tête du corps (vidéo + texte) */
+}
+.apropos__body {
+  /* Mobile-first : tout s'empile sous le titre */
+  display: grid;
+  gap: 1.8rem;
+  align-items: center; /* le texte se centre verticalement face à la vidéo */
+}
+@media (min-width: 768px) {
+  .apropos__body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(1.8rem, 4vw, 3rem);
+    align-items: center;
+  }
+}
+.apropos__head h2 {
+  font-variation-settings: "SOFT" 50;
+}
+.apropos__media {
+  position: relative;
+  margin: 0;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.apropos__media img,
+.apropos__media video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3; /* ratio propre : la vidéo garde sa hauteur naturelle */
+  object-fit: cover;
+  transition: transform 800ms var(--ease);
+}
+.apropos__media:hover img,
+.apropos__media:hover video {
+  transform: scale(1.03);
+}
+.apropos__figtag {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.9rem;
+  background: rgba(var(--ink-rgb), 0.78);
+  color: var(--bg);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: var(--r-xs);
+  backdrop-filter: blur(8px);
+}
+.apropos__figtag svg {
+  width: 13px;
+  height: 13px;
+  color: var(--brass-light);
+}
+.apropos__text .lead {
+  font-size: 1.08rem;
+  color: var(--ink);
+  line-height: 1.75;
+}
+.apropos__features {
+  margin-top: clamp(3.5rem, 6vw, 5rem); /* vrai souffle entre la vidéo et les tags */
+  display: grid;
+  grid-template-columns: 1fr; /* mobile : les 3 caractéristiques s'empilent */
+  gap: 1.6rem;
+}
+.apropos__features li {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.feature-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-sm);
+  background: var(--brass-soft);
+  color: var(--brass-deep);
+  border: var(--border-brass-soft);
+}
+.feature-icon svg {
+  width: 20px;
+  height: 20px;
+}
+.apropos__features h3 {
+  font-family: "Fraunces", serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  letter-spacing: -0.005em;
+}
+.apropos__features p {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  margin: 0;
+}
+.apropos blockquote {
+  margin: 1.8rem 0 0;
+  padding: 1.2rem 1.5rem;
+  border-left: 3px solid var(--brass);
+  background: var(--surface);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  box-shadow: var(--shadow-xs);
+}
+.apropos blockquote p {
+  margin: 0 0 0.4rem;
+  font-family: "Fraunces", serif;
+  font-size: 1.08rem;
+  font-style: italic;
+  color: var(--ink);
+  font-variation-settings: "SOFT" 80;
+}
+.apropos blockquote cite {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-style: normal;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ---------- 9. MENU ---------- */
+.menu {
+  background: var(--bg-alt);
+  position: relative;
+}
+.menu__head {
+  text-align: left;
+  max-width: 46rem;
+  margin-bottom: 3rem;
+}
+.menu__intro {
+  color: var(--ink-soft);
+  margin-bottom: 0;
+  max-width: 42em;
+}
+
+.menu__tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.45rem;
+  margin-bottom: 2.6rem;
+  padding-bottom: 0.3rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  mask-image: linear-gradient(
+    to right,
+    #000 calc(100% - 3rem),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 calc(100% - 3rem),
+    transparent 100%
+  );
+}
+.menu__tabs::-webkit-scrollbar {
+  display: none;
+}
+.tab {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  min-height: 40px;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid rgba(var(--ink-rgb), 0.18);
+  border-radius: var(--r-xs);
+  background: transparent;
+  color: var(--ink);
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.84rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+.tab:hover {
+  border-color: var(--brass);
+  color: var(--brass-dark);
+}
+.tab.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+.menu__group {
+  margin-bottom: 3.2rem;
+}
+.menu__group.is-hidden {
+  display: none;
+}
+.menu__group-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  font-weight: 600;
+  margin-bottom: 1.4rem;
+  letter-spacing: -0.005em;
+}
+.menu__group-title svg {
+  width: 20px;
+  height: 20px;
+  color: var(--brass);
+  flex-shrink: 0;
+}
+.menu__group-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(var(--ink-rgb), 0.25), transparent);
+}
+
+.menu__grid {
+  display: grid;
+  gap: 0;
+}
+
+/* Liste numérotée des spécialités (numéros rendus dans le HTML) */
+.menu__grid--numbered {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: none;
+}
+.menu-item:last-child {
+  border-bottom: 0;
+}
+.menu-item__num {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right: 0.2rem;
+  border-radius: var(--r-full);
+  background: var(--brass-soft);
+  color: var(--brass-deep);
+  border: 1px solid rgba(var(--brass-rgb), 0.22);
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.menu-item {
+  padding: 2.4rem 0;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.08);
+}
+.menu-item:hover {
+  background: transparent;
+}
+.menu-item.is-hidden {
+  display: none;
+}
+.menu-item__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  min-width: 0;
+}
+.menu-item h4 {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 1.06rem;
+  margin: 0;
+  overflow-wrap: break-word;
+  min-width: 0;
+  letter-spacing: -0.005em;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.55rem;
+}
+
+.tag {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.14rem 0.55rem;
+  border-radius: var(--r-xs);
+  background: var(--brass-soft);
+  color: var(--brass-deep);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  vertical-align: 2px;
+}
+.tag--hot {
+  background: var(--fire-soft);
+  color: var(--fire);
+}
+
+.menu-item__desc {
+  margin: 0.55rem 0 0;
+  padding-left: 2.5rem;
+  font-style: italic;
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 80;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  line-height: 1.65;
+  max-width: 60ch;
+}
+
+.wa-mini {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-xs);
+  background: var(--wa-strong);
+  color: var(--white);
+  box-shadow: var(--shadow-xs);
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+.wa-mini .wa-glyph {
+  width: 16px;
+  height: 16px;
+}
+.wa-mini:hover {
+  background: var(--wa-dark);
+  transform: translateY(-1px);
+}
+.wa-mini:active {
+  transform: scale(0.96);
+}
+
+.menu__formule-note {
+  margin-top: 1rem;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.84rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border-left: 2px solid var(--brass);
+  padding: 0.7rem 1rem;
+  line-height: 1.6;
+}
+
+.menu-card {
+  max-width: 620px;
+  margin: 2.8rem auto 0;
+  background: var(--surface);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  border: var(--border-faint);
+}
+.menu-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.menu-card figcaption {
+  padding: 0.85rem 1.1rem;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.06);
+}
+
+/* ============================================================
+   10. GALERIE PANORAMIQUE — bandeau « lentille » + marquee infini
+   ------------------------------------------------------------
+   .panorama        : masque bord à bord, incurvé via clip-path
+                      ellipse() (rayons réglables : --pano-curve-*)
+   .panorama__track : 2 × le même jeu de photos → la boucle
+                      translateX(-50%) retombe exactement sur 0
+   .panorama__item  : grand bloc 4/5, toute la hauteur du masque
+   ============================================================ */
+.galerie__head {
+  text-align: left;
+  max-width: 44rem;
+  margin-bottom: 2rem;
+}
+.galerie__intro {
+  color: var(--ink-soft);
+}
+
+/* --- Le bandeau incurvé : la « lentille » panoramique --------- */
+.panorama {
+  --pano-gap: 0.75rem; /* espace entre deux photos (léger) */
+  --pano-curve-x: 80%; /* rayon horizontal de la lentille */
+  --pano-curve-y: 60%; /* rayon vertical : ↑ = courbe plus plate */
+  position: relative;
+  width: 100%;
+  height: 40vh; /* mobile : hauteur compacte */
+  overflow: hidden;
+  background: var(--bg-alt);
+  -webkit-clip-path: ellipse(
+    var(--pano-curve-x) var(--pano-curve-y) at 50% 50%
+  );
+  clip-path: ellipse(var(--pano-curve-x) var(--pano-curve-y) at 50% 50%);
+}
+
+/* --- La piste : deux jeux identiques, translation sur GPU ------ */
+.panorama__track {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  width: max-content; /* ESSENTIEL : translateX(-50%) se mesure sur la
+                               vraie largeur des images, pas sur l'écran */
+  will-change: transform; /* accélération matérielle de la translation */
+  animation: marquee 40s linear infinite;
+}
+
+/* Pause au survol… et à la prise de focus clavier (région focusable) */
+.panorama:hover .panorama__track,
+.panorama:focus-within .panorama__track {
+  animation-play-state: paused;
+}
+
+/* --- Photo : grand rectangle qui occupe toute la hauteur du masque */
+.panorama__item {
+  position: relative;
+  flex: none;
+  height: 100%;
+  aspect-ratio: 4 / 5; /* grand bloc portrait, largeur déduite */
+  margin-right: var(
+    --pano-gap
+  ); /* « gap » manuel : rend la boucle -50% exacte
+                                    (un gap flex casserait la symétrie des deux moitiés) */
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--bg-alt);
+  box-shadow: var(--shadow-sm);
+}
+
+.panorama__item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms var(--ease);
+}
+
+.panorama__item:hover img {
+  transform: scale(1.04);
+}
+
+.panorama__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.4rem 1rem 0.9rem;
+  background: linear-gradient(to top, rgba(var(--ink-rgb), 0.82), transparent);
+  color: var(--white);
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transition: opacity 250ms var(--ease);
+  pointer-events: none;
+}
+
+.panorama__item:hover .panorama__caption {
+  opacity: 1;
+}
+
+/* Écrans sans survol (tactile) : légendes lisibles en permanence */
+@media (hover: none) {
+  .panorama__caption {
+    opacity: 0.85;
+  }
+}
+
+/* Desktop : bandeau plus haut + lentille plus incurvée */
+@media (min-width: 1024px) {
+  .panorama {
+    height: 60vh;
+    --pano-curve-x: 78%;
+    --pano-curve-y: 52%;
+  }
+}
+
+/* --- Accessibilité : motion réduit → lecture sans animation ---- */
+@media (prefers-reduced-motion: reduce) {
+  .panorama {
+    overflow-x: auto; /* défilement horizontal natif */
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory; /* arrêts aimantés sur chaque photo */
+    scroll-padding-inline: clamp(1rem, 4vw, 3rem);
+    overscroll-behavior-x: contain;
+  }
+  .panorama__track {
+    animation: none !important;
+    will-change: auto;
+  }
+  .panorama__item {
+    scroll-snap-align: center; /* photo centrée dans la lentille */
+  }
+  .panorama__item img,
+  .panorama__item .panorama__caption {
+    transition: none !important;
+    transform: none !important;
+  }
+  .panorama__item .panorama__caption {
+    opacity: 0.85; /* légendes toujours visibles */
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(
+      -50%
+    ); /* -50% = un jeu complet : les deux moitiés sont identiques */
+  }
+}
+
+/* ---------- 11. CONTACT ---------- */
+.contact {
+  background: var(--bg-alt);
+  position: relative;
+}
+.contact__head {
+  text-align: left;
+  margin-bottom: 2.8rem;
+  max-width: 40rem;
+}
+.contact__grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.info-card {
+  padding: 1.7rem 1.5rem;
+  background: var(--surface);
+  border: var(--border-faint);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+.info-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(var(--brass-rgb), 0.25);
+}
+.info-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+.info-card p {
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+}
+.info-card__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 1rem;
+  border-radius: var(--r-sm);
+  background: var(--brass-soft);
+  color: var(--brass-deep);
+  border: var(--border-brass-soft);
+}
+.info-card__icon svg {
+  width: 20px;
+  height: 20px;
+}
+.info-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--brass-dark);
+  text-decoration: none;
+  padding-bottom: 1px;
+}
+.info-card__link:hover {
+  color: var(--fire);
+  border-bottom-color: var(--fire);
+}
+.info-card__link span {
+  transition: transform var(--dur-fast) var(--ease);
+}
+.info-card__link:hover span {
+  transform: translateX(3px);
+}
+.info-card__phone {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+.info-card__phone:hover {
+  color: var(--brass-dark);
+}
+.info-card .btn--wa {
+  margin-top: 0.7rem;
+  padding: 0.65rem 1.1rem;
+  font-size: 0.86rem;
+}
+
+.horaires {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.horaires th,
+.horaires td {
+  padding: 0.5rem 0;
+  text-align: left;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.94rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+}
+.horaires th {
+  font-weight: 600;
+  color: var(--ink);
+}
+.horaires tr:last-child th,
+.horaires tr:last-child td {
+  border-bottom: 0;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--r-xs);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.status--open {
+  background: rgba(var(--wa-rgb), 0.12);
+  color: var(--wa-dark);
+  border: 1px solid rgba(var(--wa-rgb), 0.2);
+}
+.status--closed {
+  background: var(--fire-soft);
+  color: var(--fire);
+  border: 1px solid rgba(var(--fire-rgb), 0.2);
+}
+.status__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.map {
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: var(--surface);
+  border: var(--border-faint);
+}
+.map__frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+/* ---------- 12. BANDEAU CTA ---------- */
+.bandeau {
+  background: var(--ink);
+  color: var(--bg);
+  padding-block: clamp(3rem, 6vw, 4.5rem);
+  position: relative;
+  overflow: hidden;
+}
+.bandeau::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(var(--brass-rgb), 0.15) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 80% 50%,
+      rgba(var(--fire-rgb), 0.12) 0%,
+      transparent 40%
+    );
+  pointer-events: none;
+}
+.bandeau__inner {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem 2rem;
+}
+.bandeau__title {
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  color: var(--bg);
+  margin-bottom: 0.3rem;
+  font-variation-settings: "SOFT" 60;
+  letter-spacing: -0.01em;
+}
+.bandeau__text {
+  color: rgba(var(--bg-rgb), 0.75);
+  margin: 0;
+  font-size: 0.95rem;
+}
+.bandeau .btn--wa {
+  background: var(--brass);
+  color: var(--white);
+  box-shadow: var(--shadow-md);
+}
+.bandeau .btn--wa:hover {
+  background: var(--brass-hover);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+/* ---------- 13. FOOTER ---------- */
+.footer {
+  background: var(--ink);
+  color: var(--footer-text);
+}
+.footer__grid {
+  display: grid;
+  gap: 2.4rem;
+  padding-block: 3.6rem 2.4rem;
+}
+.footer__brand .navbar__logo {
+  color: var(--bg);
+  position: static;
+}
+.footer__brand p {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: rgba(var(--footer-rgb), 0.75);
+}
+.footer__social {
+  display: flex;
+  gap: 0.55rem;
+  margin-top: 1.3rem;
+}
+.footer__social a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-sm);
+  background: rgba(var(--white-rgb), 0.06);
+  color: var(--bg);
+  border: 1px solid rgba(var(--white-rgb), 0.08);
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+.footer__social a:hover {
+  background: var(--brass);
+  border-color: var(--brass);
+  transform: translateY(-2px);
+}
+.footer__social svg {
+  width: 18px;
+  height: 18px;
+}
+.footer__social .wa-glyph {
+  width: 20px;
+  height: 20px;
+}
+.footer__social a.social-wa:hover {
+  background: var(--white);
+  border-color: var(--white);
+}
+
+.footer h3 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(var(--footer-rgb), 0.55);
+  margin-bottom: 1rem;
+}
+.footer__nav ul {
+  display: grid;
+  gap: 0.45rem;
+}
+.footer__nav a {
+  color: rgba(var(--footer-rgb), 0.85);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+.footer__nav a:hover {
+  color: var(--brass);
+}
+.footer__legal p {
+  font-size: 0.84rem;
+  color: rgba(var(--footer-rgb), 0.65);
+}
+.footer__legal a {
+  color: rgba(var(--footer-rgb), 0.9);
+  text-decoration-color: var(--brass);
+}
+.footer__legal a:hover {
+  color: var(--bg);
+}
+.footer__legal .footer__crédits {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+}
+.footer__bottom {
+  border-top: 1px solid rgba(var(--white-rgb), 0.08);
+  padding-block: 1.2rem;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(var(--footer-rgb), 0.45);
+}
+.footer__bottom p {
+  margin: 0;
+}
+
+/* ---------- 14. BOUTON WHATSAPP FLOTTANT (pulse asynchrone) ---------- */
+.wa-fab {
+  position: fixed;
+  right: max(1.1rem, env(safe-area-inset-right));
+  bottom: max(1.1rem, env(safe-area-inset-bottom));
+  z-index: 150;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+  border-radius: var(--r-full);
+  background: transparent;
+  color: transparent;
+  text-decoration: none;
+  font-size: 0;
+  box-shadow: none;
+  transition: transform var(--dur-fast) var(--ease);
+}
+.wa-fab .wa-glyph {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  background: transparent;
+  display: block;
+}
+.wa-fab:hover {
+  transform: translateY(-3px);
+  background: transparent;
+  box-shadow: none;
+  color: transparent;
+}
+.wa-fab:active {
+  transform: translateY(-1px) scale(0.97);
+}
+
+/* Anneau pulse asynchrone : actif 2s toutes les 10s */
+.wa-fab__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-full);
+  background: transparent;
+  z-index: 0;
+  opacity: 0;
+  animation: fab-pulse-async 10s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes fab-pulse-async {
+  0%,
+  80% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  82% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  95% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-fab__ring {
+    animation: none;
+    opacity: 0;
+  }
+  .hero__scroll {
+    animation: none;
+  }
+  .hero__slide--active {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* ---------- 15. RESPONSIVE ---------- */
+
+@media (max-width: 600px) {
+  .menu-item {
+    padding-block: 1.55rem;
+  }
+  .menu-item__desc {
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 640px) {
+  .menu__grid {
+    grid-template-columns: 1fr;
+  }
+  .contact__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .map__frame {
+    aspect-ratio: 16 / 7.5;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --nav-h: 82px;
+  }
+  .apropos__features {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem 1.8rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .navbar__burger {
+    display: none;
+  }
+  .navbar__nav {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    animation: none;
+  }
+  .navbar__nav ul {
+    flex-direction: row;
+    gap: 0.15rem;
+    margin-right: 0.6rem;
+    list-style: none;
+  }
+  .nav-link {
+    padding: 0.55rem 1rem;
+    font-size: 0.92rem;
+    color: var(--white);
+  }
+  .navbar--scrolled .nav-link {
+    color: var(--ink);
+  }
+  .navbar__cta {
+    margin-block-start: 0;
+    padding: 0.6rem 1.3rem;
+    font-size: 0.88rem;
+  }
+
+  .hero {
+    padding-block: calc(var(--nav-h) + 2.5rem) 4rem;
+  }
+  /* Colonne unique bornée : le titre ne s'étire plus sur toute la
+     largeur (c'était la cause d'un hero de ~1300px de haut), la ligne
+     se mesure à ~62rem et le CTA reste visible au-dessus du pli */
+  .hero__content {
+    text-align: left;
+    display: block;
+    max-width: 62rem;
+  }
+  .hero__subtitle {
+    margin-inline: 0;
+    max-width: 46em;
+  }
+  .hero__actions,
+  .hero__trust {
+    justify-content: flex-start;
+  }
+  .hero__scroll {
+    left: auto;
+    right: 2rem;
+  }
+
+  .menu__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .contact__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .map__frame {
+    aspect-ratio: 16 / 6.5;
+  }
+  .footer__grid {
+    grid-template-columns: 1.4fr 1fr 1.6fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .hero__trust {
+    font-size: 0.78rem;
+  }
+  .hero__actions .btn--lg {
+    flex: 1 1 100%;
+  }
+  .menu__head,
+  .galerie__head,
+  .contact__head {
+    text-align: center;
+  }
+  .eyebrow::before {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --nav-h: 62px;
+  }
+  .hero {
+    padding-block: calc(var(--nav-h) + 1.8rem) 3.5rem;
+  }
+}
+
+.navbar__nav.is-open {
+  max-height: calc(100dvh - var(--nav-h) - 16px);
+  overflow-y: auto;
+}
+
+/* ============================================================
+   OVERRIDES v3 — annule les !important du vieux CSS concaténé
+   ============================================================ */
+
+/* Annule le !important de l'ancien reveal qui bloquait les animations */
+html.js .reveal {
+  opacity: 0 !important;
+  transform: translateY(8px) !important;
+  transition:
+    opacity 350ms var(--ease),
+    transform 350ms var(--ease) !important;
+  transition-delay: var(--reveal-delay, 0ms) !important;
+}
+html.js .reveal.in-view {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Navbar centrée : override l'ancien space-between */
+.navbar__inner {
+  justify-content: space-between !important;
+}
+
+/* Annule l'ancien menu__tabs flex-wrap qui empêchait nowrap */
+.menu__tabs {
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  mask-image: linear-gradient(
+    to right,
+    #000 calc(100% - 3rem),
+    transparent 100%
+  ) !important;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 calc(100% - 3rem),
+    transparent 100%
+  ) !important;
+}
+
+/* FAB pulse ring — force la visibilité */
+.wa-fab__ring {
+  display: block !important;
+}
+
+/* ============================================================
+   16. NAVBAR v4 — refonte finale (dernier mot sur le rendu)
+   Sur le hero  : barre transparente, logo écusson + textes crème.
+   Au scroll    : voile parchemin + liseré « braise » animé en bas.
+   Logo officiel: écusson photographique + anneau laiton décroché.
+   ============================================================ */
+
+/* --- 16.1 Socle de barre : transparent au repos, voile au scroll --- */
+.navbar {
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition:
+    background-color var(--dur-slow) var(--ease),
+    border-color var(--dur-slow) var(--ease),
+    box-shadow var(--dur-slow) var(--ease);
+}
+
+/* Liseré « braise » fixé au bord inférieur (apparaît au scroll) */
+.navbar::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--brass-dark),
+    var(--fire) 45%,
+    var(--brass) 82%
+  );
+  opacity: 0;
+  transform: scaleX(0.3);
+  transform-origin: left;
+  transition:
+    opacity var(--dur-slow) var(--ease),
+    transform var(--dur-slow) var(--ease);
+  pointer-events: none;
+}
+
+.navbar--scrolled {
+  background: rgba(var(--bg-rgb), 0.92);
+  backdrop-filter: blur(14px) saturate(1.35);
+  -webkit-backdrop-filter: blur(14px) saturate(1.35);
+  border-bottom-color: rgba(var(--ink-rgb), 0.08);
+  box-shadow: 0 10px 30px -18px rgba(var(--ink-rgb), 0.28);
+}
+.navbar--scrolled::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* --- 16.2 Logo officiel : écusson rond + anneau laiton --- */
+.navbar__logo {
+  gap: 0.65rem;
+}
+.logo-badge {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: transform var(--dur-fast) var(--ease);
+}
+.logo-badge img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+}
+/* Anneau décroché autour de l'écusson */
+.logo-badge::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(var(--brass-rgb), 0.5);
+  transition:
+    border-color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+.navbar__logo:hover .logo-badge {
+  transform: scale(1.06);
+}
+.navbar__logo:hover .logo-badge::after {
+  border-color: rgba(var(--fire-rgb), 0.85); /* flash braise au survol */
+}
+
+.navbar .navbar__logo {
+  color: var(--ink);
+}
+.navbar .logo-sub {
+  color: var(--brass-dark);
+}
+
+/* Sur le hero (barre transparente) : textes crème */
+.navbar:not(.navbar--scrolled) .navbar__logo {
+  color: var(--white);
+}
+.navbar:not(.navbar--scrolled) .logo-sub {
+  color: var(--brass-light);
+}
+.navbar:not(.navbar--scrolled) .navbar__logo:hover {
+  color: var(--white);
+}
+/* Une fois scrollé : retour encre espresso */
+.navbar--scrolled .navbar__logo {
+  color: var(--ink);
+}
+.navbar--scrolled .logo-sub {
+  color: var(--brass-dark);
+}
+.navbar--scrolled .navbar__logo:hover {
+  color: var(--ink);
+}
+
+/* --- 16.3 Liens : pastilles « chips » --- */
+.nav-link {
+  padding: 0.62rem 1.05rem;
+  border-radius: var(--r-full);
+  color: var(--ink-2);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease);
+}
+.nav-link:hover,
+.nav-link:focus-visible {
+  background: var(--brass-soft);
+  color: var(--brass-deep);
+}
+.nav-link.is-active {
+  background: var(--brass);
+  color: var(--cream-strong);
+  box-shadow: 0 6px 14px -6px rgba(var(--brass-rgb), 0.55);
+}
+.navbar--scrolled .nav-link.is-active {
+  background: var(--brass);
+  color: var(--cream-strong);
+}
+
+/* --- 16.4 CTA WhatsApp --- */
+.navbar__cta {
+  margin-block-start: 0.35rem;
+  border-radius: var(--r-full);
+}
+
+/* --- 16.5 Burger : pilule à fond translucide sur le hero --- */
+.navbar__burger {
+  border-radius: var(--r-full);
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+.navbar:not(.navbar--scrolled) .navbar__burger {
+  background: rgba(var(--white-rgb), 0.14);
+  border-color: rgba(var(--white-rgb), 0.3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.navbar:not(.navbar--scrolled) .navbar__burger span {
+  background: var(--white);
+}
+.navbar--scrolled .navbar__burger {
+  background: rgba(var(--surface-rgb), 0.92);
+  border-color: rgba(var(--ink-rgb), 0.12);
+}
+.navbar--scrolled .navbar__burger span {
+  background: var(--ink);
+}
+
+/* --- 16.6 Volet mobile : carte flottante arrondie --- */
+@media (max-width: 1023px) {
+  .navbar__nav {
+    top: calc(var(--nav-h) + 12px);
+    padding: 1rem;
+    gap: 0.85rem;
+    background: var(--surface);
+    border: var(--border-soft);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-lg);
+  }
+  .navbar__nav ul {
+    gap: 0.15rem;
+  }
+  .nav-link {
+    padding: 0.72rem 1.1rem;
+    font-size: 0.95rem;
+  }
+  .navbar__cta {
+    width: 100%;
+  }
+}
+
+/* --- 16.7 Desktop : liens crème sur le hero, encre une fois scrollé --- */
+@media (min-width: 1024px) {
+  .navbar__nav ul {
+    gap: 0.35rem;
+    margin-right: 0.75rem;
+  }
+  .nav-link {
+    padding: 0.5rem 0.95rem;
+    font-size: 0.9rem;
+  }
+  .navbar:not(.navbar--scrolled) .nav-link {
+    color: rgba(var(--white-rgb), 0.92);
+  }
+  .navbar:not(.navbar--scrolled) .nav-link:hover,
+  .navbar:not(.navbar--scrolled) .nav-link:focus-visible {
+    background: rgba(var(--white-rgb), 0.15);
+    color: var(--white);
+  }
+  .navbar:not(.navbar--scrolled) .nav-link.is-active {
+    background: rgba(var(--white-rgb), 0.16);
+    box-shadow:
+      inset 0 0 0 1px rgba(var(--white-rgb), 0.28),
+      0 6px 16px -8px rgba(0, 0, 0, 0.4);
+    color: var(--white);
+  }
+  .navbar__cta {
+    margin-block-start: 0;
+    width: auto;
+    padding: 0.58rem 1.35rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================================================
+   17. PANIER — modale « shopping cart » (inspirée Skyrise Decor)
+   ------------------------------------------------------------
+   .cart        : voile plein écran, défilement interne
+   .cart__card  : carte crème très arrondie — grille ~70/30 :
+                  liste des plats ↔ résumé de la commande
+   .cart-row    : ligne produit (miniature, pilule quantité,
+                  total, corbeille) séparée par une bordure fine
+   Responsive   : ≤990px, le résumé passe SOUS la liste et chaque
+                  produit devient une grille verticale.
+   ============================================================ */
+
+/* ---------- 17.1 Déclencheur (navbar, toujours visible) ---------- */
+.cart-open-btn {
+  position: absolute;
+  top: 50%;
+  right: calc(clamp(0.75rem, 4vw, 2.5rem) + 54px);
+  transform: translateY(-50%);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(var(--ink-rgb), 0.12);
+  border-radius: var(--r-full);
+  background: rgba(var(--white-rgb), 0.72);
+  color: var(--ink);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+.cart-open-btn svg {
+  width: 19px;
+  height: 19px;
+}
+.cart-open-btn__badge {
+  position: absolute;
+  top: -4px;
+  right: -5px;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+  border-radius: var(--r-full);
+  background: var(--fire);
+  color: var(--white);
+  box-shadow: 0 0 0 2px rgba(var(--bg-rgb), 0.95);
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 19px;
+  text-align: center;
+}
+
+/* Façon burger : translucide sur le hero, opaque une fois scrollé */
+.navbar:not(.navbar--scrolled) .cart-open-btn {
+  background: rgba(var(--white-rgb), 0.14);
+  border-color: rgba(var(--white-rgb), 0.3);
+  color: var(--white);
+}
+.navbar--scrolled .cart-open-btn {
+  background: rgba(var(--surface-rgb), 0.92);
+  border-color: rgba(var(--ink-rgb), 0.12);
+  color: var(--ink);
+}
+.navbar .cart-open-btn:hover,
+.navbar .cart-open-btn:focus-visible {
+  background: var(--brass);
+  border-color: var(--brass);
+  color: var(--white);
+  transform: translateY(-50%) scale(1.06);
+}
+
+/* Desktop : libère une « baie » à droite pour le bouton à côté du CTA */
+@media (min-width: 1024px) {
+  .cart-open-btn {
+    right: clamp(0.75rem, 4vw, 2.5rem);
+  }
+  .navbar__nav {
+    margin-right: 62px;
+  }
+}
+
+/*---------- 17.1bis Barre « Voir mon panier » de la section carte ---------- */
+.menu-cartline {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+.menu-cartline__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.62rem 1.2rem;
+  border: var(--border-strong);
+  border-radius: var(--r-full);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-xs);
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+.menu-cartline__btn svg {
+  width: 17px;
+  height: 17px;
+}
+.menu-cartline__btn:hover,
+.menu-cartline__btn:focus-visible {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+  transform: translateY(-1px);
+}
+.menu-cartline__count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: var(--r-full);
+  background: var(--brass);
+  color: var(--white);
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+}
+[data-cart-badge].is-bump {
+  animation: badge-bump 420ms var(--ease);
+}
+@keyframes badge-bump {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ---------- 17.2 Coque de la modale ---------- */
+body.cart-is-open {
+  overflow: hidden;
+}
+.cart {
+  position: fixed;
+  inset: 0;
+  z-index: 180;
+  display: flex;
+  padding: clamp(0.75rem, 2.5vw, 2rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 300ms var(--ease),
+    visibility 0s linear 300ms;
+}
+.cart.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 300ms var(--ease);
+}
+.cart__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(var(--ink-rgb), 0.58);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  cursor: pointer;
+}
+.cart__sheet {
+  position: relative;
+  z-index: 1;
+  margin: auto;
+  width: min(1070px, 100%);
+}
+
+/* ---------- 17.3 La carte crème ---------- */
+.cart__card {
+  background: var(--surface);
+  border: var(--border-soft);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-lg);
+  padding: clamp(1.2rem, 3vw, 2.1rem) clamp(1rem, 3vw, 2.4rem)
+    clamp(1.6rem, 3.5vw, 2.6rem);
+  transform: translateY(20px) scale(0.985);
+  transition: transform 340ms var(--ease);
+}
+.cart.is-open .cart__card {
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cart__card {
+    transform: none;
+  }
+}
+
+/* Barre haute : marque + actions, façon maquette */
+.cart__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+}
+.cart__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--ink);
+}
+.cart__topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.cart__pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 1.15rem;
+  border: var(--border-strong);
+  border-radius: var(--r-full);
+  color: var(--ink);
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.86rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+}
+.cart__pill:hover,
+.cart__pill:focus-visible {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+.cart__close {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(var(--ink-rgb), 0.14);
+  border-radius: var(--r-full);
+  background: var(--white);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+.cart__close span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink);
+  transform: translate(-50%, -50%) rotate(45deg);
+  transition: background-color var(--dur-fast) var(--ease);
+}
+.cart__close span:last-child {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.cart__close:hover,
+.cart__close:focus-visible {
+  background: var(--ink);
+  border-color: var(--ink);
+  transform: scale(1.05);
+}
+.cart__close:hover span,
+.cart__close:focus-visible span {
+  background: var(--bg);
+}
+
+/* Titre + compteur */
+.cart__title {
+  margin: 0 0 clamp(1.1rem, 2.6vw, 1.7rem);
+  font-size: clamp(1.65rem, 4vw, 2.5rem);
+}
+.cart__title-count {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.7rem;
+  padding: 0.18rem 0.7rem;
+  vertical-align: 0.4em;
+  border-radius: var(--r-full);
+  background: var(--brass-soft);
+  color: var(--brass-deep);
+  border: 1px solid rgba(var(--brass-rgb), 0.25);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* ---------- 17.4 Grille maîtresse : ~70% liste, ~30% résumé ---------- */
+.cart__grid {
+  display: grid;
+  gap: 1.3rem;
+}
+.cart__left {
+  min-width: 0;
+}
+
+/* Les deux cartes : fond blanc, bordure fine, coins très arrondis */
+.cart-card {
+  background: var(--white);
+  border: var(--border-hair);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+.cart-card--items {
+  overflow: hidden;
+  /* Colonnes partagées par l'en-tête ET chaque ligne de produit */
+  --cart-row-cols: 72px minmax(0, 1fr) 128px 88px 38px;
+}
+
+/* ---------- 17.5 Lignes de produits ---------- */
+.cart-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cart-row {
+  display: grid;
+  grid-template-columns: var(--cart-row-cols);
+  gap: 0.7rem;
+  align-items: center;
+  padding: 1rem 1.05rem;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.07);
+  transition: background-color var(--dur-fast) var(--ease);
+}
+.cart-row:hover {
+  background: rgba(var(--brass-rgb), 0.045);
+}
+/* En-têtes discrets (Plat / Quantité / Total / Action) */
+.cart-row--head {
+  padding: 0.72rem 1.05rem 0.6rem;
+  border-top: 0;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.08);
+  align-items: end;
+}
+.cart-row--head span {
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.cart-row--head span:first-child {
+  grid-column: 1 / 3;
+}
+.cart-row--head .th-total,
+.cart-row--head .th-action {
+  text-align: right;
+}
+/* La carte masque l'ossature quand le panier est vide */
+.cart-card--items.is-empty .cart-row--head {
+  display: none;
+}
+
+/* Miniature arrondie */
+.cart-row__media {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--brass-soft);
+  border: var(--border-faint);
+}
+.cart-row__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Vignette de repli (plats sans photo dédiée, ex. cabri) */
+.cart-row__ph {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: var(--brass-deep);
+  background: linear-gradient(135deg, var(--brass-soft), var(--cream-soft));
+}
+.cart-row__ph svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* Nom + variante + prix unitaire */
+.cart-row__meta {
+  min-width: 0;
+}
+.cart-row__name {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: -0.005em;
+}
+.cart-row__variant {
+  margin: 0.18rem 0 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  overflow-wrap: break-word;
+}
+.cart-row__unit {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--ink-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sélecteur de quantité en pilule (bordure fine, + / n / −) */
+.cart-qty {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 128px;
+  height: 38px;
+  border: 1px solid rgba(var(--ink-rgb), 0.16);
+  border-radius: var(--r-full);
+  background: var(--white);
+  overflow: hidden;
+}
+.cart-qty__btn {
+  width: 36px;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+.cart-qty__btn:hover {
+  background: var(--brass-soft);
+  color: var(--brass-deep);
+}
+.cart-qty__btn:active {
+  transform: scale(0.85);
+}
+.cart-qty__value {
+  min-width: 1.8em;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Total de la ligne + corbeille */
+.cart-row__total {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-align: right;
+  justify-self: end;
+  font-variant-numeric: tabular-nums;
+}
+.cart-row__trash {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-full);
+  background: transparent;
+  color: var(--ink-soft);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+.cart-row__trash svg {
+  width: 18px;
+  height: 18px;
+}
+.cart-row__trash:hover,
+.cart-row__trash:focus-visible {
+  background: var(--fire-soft);
+  color: var(--fire);
+  transform: scale(1.08);
+}
+
+/* Sous le tableau : « Vider le panier » (rôle de l'Update Cart de la maquette) */
+.cart__left-foot {
+  margin-top: 1.1rem;
+  display: flex;
+}
+.cart__clear {
+  padding: 0.72rem 1.5rem;
+  border: 1px solid rgba(var(--ink-rgb), 0.28);
+  border-radius: var(--r-full);
+  background: transparent;
+  color: var(--ink);
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+.cart__clear:hover:not(:disabled),
+.cart__clear:focus-visible {
+  background: var(--fire);
+  border-color: var(--fire);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+.cart__clear:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---------- 17.6 État vide ---------- */
+.cart-empty {
+  padding: 3rem 1.5rem 2.6rem;
+  text-align: center;
+}
+.cart-empty__icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 0.9rem;
+  border-radius: var(--r-full);
+  background: var(--brass-soft);
+  color: var(--brass-deep);
+  border: 1px solid rgba(var(--brass-rgb), 0.25);
+}
+.cart-empty__icon svg {
+  width: 26px;
+  height: 26px;
+}
+.cart-empty__title {
+  margin: 0 0 0.35rem;
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--ink);
+}
+.cart-empty__text {
+  max-width: 34ch;
+  margin: 0 auto 1.2rem;
+  font-size: 0.9rem;
+  color: var(--ink-mute);
+}
+.cart-empty__cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.35rem;
+  border: 1.5px solid rgba(var(--ink-rgb), 0.28);
+  border-radius: var(--r-full);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+}
+.cart-empty__cta:hover,
+.cart-empty__cta:focus-visible {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+/* ---------- 17.7 Carte « Résumé de la commande » ---------- */
+.cart-card--summary {
+  align-self: start;
+  padding: 1.4rem 1.3rem 1.5rem;
+}
+.cart-summary__title {
+  margin: 0 0 1rem;
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* Champ « Précisions ou adresse de livraison » (remplace le voucher) */
+.cart-field {
+  display: block;
+}
+.cart-field__label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+#cart-notes {
+  width: 100%;
+  min-height: 78px;
+  resize: vertical;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid rgba(var(--ink-rgb), 0.18);
+  border-radius: var(--r-md);
+  background: var(--white);
+  color: var(--ink);
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  transition:
+    border-color var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease);
+}
+#cart-notes::placeholder {
+  color: var(--ink-mute);
+  opacity: 0.75;
+}
+#cart-notes:focus {
+  border-color: var(--brass);
+  box-shadow: 0 0 0 3px rgba(var(--brass-rgb), 0.16);
+  outline: none;
+}
+
+/* Lignes de calcul */
+.cart-totals {
+  margin: 1.15rem 0 0;
+}
+.cart-totals__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.35rem;
+}
+.cart-totals__row dt {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+.cart-totals__row dd {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.cart-totals__pending {
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-weight: 500 !important;
+  font-size: 0.95rem !important;
+  color: var(--brass-dark);
+}
+.cart-totals__row--total {
+  margin-top: 0.45rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.14);
+}
+.cart-totals__row--total dt {
+  font-weight: 700;
+  color: var(--ink);
+}
+.cart-totals__row--total dd {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+.cart-totals__caption {
+  margin: 0.15rem 0 0;
+  text-align: right;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--ink-mute);
+}
+
+/* Note rassurante (dot vert WhatsApp) */
+.cart-summary__note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  margin: 1rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.cart-summary__dot {
+  width: 7px;
+  height: 7px;
+  margin-top: 0.38rem;
+  border-radius: 50%;
+  background: var(--wa-strong);
+  flex-shrink: 0;
+}
+
+/* Grand bouton d'action : pill WhatsApp aux bords très arrondis */
+.cart__checkout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  min-height: 54px;
+  margin-top: 1.2rem;
+  padding: 1rem 1rem;
+  border: 0;
+  border-radius: var(--r-full);
+  background: var(--wa-strong);
+  color: var(--white);
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.94rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow:
+    var(--shadow-sm),
+    0 10px 24px -10px rgba(var(--wa-rgb), 0.55);
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease),
+    opacity var(--dur-fast) var(--ease);
+}
+.cart__checkout .wa-glyph {
+  width: 1.25em;
+  height: 1.25em;
+}
+.cart__checkout:hover:not(:disabled),
+.cart__checkout:focus-visible {
+  background: var(--wa-dark);
+  transform: translateY(-2px);
+  box-shadow:
+    var(--shadow-md),
+    0 14px 28px -10px rgba(var(--wa-rgb), 0.6);
+}
+.cart__checkout:active:not(:disabled) {
+  transform: scale(0.98);
+}
+.cart__checkout.is-sent {
+  transform: scale(0.97);
+}
+.cart__checkout:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ---------- 17.8 Layout desktop : liste 1fr ↔ résumé 320px ---------- */
+@media (min-width: 991px) {
+  .cart__grid {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    align-items: start;
+  }
+}
+
+/* ---------- 17.9 Mobile : résumé SOUS la liste, produits en grille verticale ---------- */
+@media (max-width: 990px) {
+  /* L'en-tête du tableau disparaît : chaque ligne s'auto-décrit */
+  .cart-row--head {
+    display: none;
+  }
+
+  /* Grille verticale : photo à gauche, nom en haut,
+     pilule de quantité en bas à gauche, total + corbeille en bas à droite */
+  .cart-row {
+    grid-template-columns: 72px minmax(0, 1fr) auto;
+    grid-template-areas:
+      "img  meta  total"
+      "img  qty   trash";
+    row-gap: 0.8rem;
+    padding: 1rem 0.95rem;
+  }
+  .cart-row--head span:first-child {
+    grid-column: auto;
+  }
+  .cart-row__media {
+    grid-area: img;
+    width: 72px;
+    height: 72px;
+  }
+  .cart-row__meta {
+    grid-area: meta;
+  }
+  .cart-qty {
+    grid-area: qty;
+    justify-self: start;
+    height: 34px;
+  }
+  .cart-qty__btn {
+    width: 32px;
+    font-size: 1rem;
+  }
+  .cart-row__total {
+    grid-area: total;
+    align-self: start;
+  }
+  .cart-row__trash {
+    grid-area: trash;
+    align-self: end;
+  }
+  .cart-row__name {
+    font-size: 0.98rem;
+  }
+  .cart-row__unit {
+    margin-top: 0.3rem;
+  }
+
+  /* La modale occupe presque tout l'écran */
+  .cart__card {
+    padding: 1.1rem 0.9rem 1.5rem;
+    border-radius: var(--r-lg);
+  }
+  .cart__pill {
+    display: none; /* la croix suffit sur mobile */
+  }
+  .cart__title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .cart__title-count {
+    margin-left: 0;
+    vertical-align: 0;
+  }
+}
+
+/* Boutons « Ajouter » de la carte : pill discrète */
+.menu-item__buy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin: 1rem 0 0 2.5rem;
+}
+.menu-item__price {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.menu-item__price strong {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.menu-item__add {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.15rem;
+  border: 1px solid rgba(var(--ink-rgb), 0.22);
+  border-radius: var(--r-full);
+  background: transparent;
+  color: var(--ink);
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+.menu-item__add svg {
+  width: 16px;
+  height: 16px;
+}
+.menu-item__add:hover,
+.menu-item__add:focus-visible {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+  transform: translateY(-1px);
+}
+.menu-item__add:active {
+  transform: scale(0.96);
+}
+.menu-item__add.is-added {
+  background: var(--wa-strong);
+  border-color: var(--wa-strong);
+  color: var(--white);
+}
+@media (max-width: 600px) {
+  .menu-item__buy {
+    margin-left: 0;
+  }
+}
+
+/* ---------- 17.10 Très petits écrans : pile stricte (grille 2 colonnes) ---------- */
+@media (max-width: 480px) {
+  .cart-row {
+    grid-template-columns: 64px minmax(0, 1fr);
+    /* Annule les zones nommées du ≤990px : la pile stricte utilise
+       des coordonnées numériques explicites, pas de colonne implicite */
+    grid-template-areas: none;
+    row-gap: 0.7rem;
+    padding: 0.95rem 0.85rem;
+  }
+  /* La photo chevauche les 2 premières lignes (nom, puis quantité) */
+  .cart-row__media {
+    grid-area: 1 / 1 / 3 / 2;
+    width: 64px;
+    height: 64px;
+  }
+  .cart-row__meta {
+    grid-area: 1 / 2;
+  }
+  .cart-qty {
+    grid-area: 2 / 2;
+    justify-self: start;
+  }
+  /* Dernière ligne : corbeille à gauche, total à droite */
+  .cart-row__trash {
+    grid-area: 3 / 1;
+    justify-self: start;
+  }
+  .cart-row__total {
+    grid-area: 3 / 2;
+  }
+  .cart__card {
+    padding: 1rem 0.8rem 1.4rem;
+  }
+  .cart__left-foot .cart__clear {
+    width: 100%;
+  }
+}
+
+/* ---------- 17.11 Toast « ajout au panier » ---------- */
+.cart-toast {
+  position: fixed;
+  bottom: max(1.35rem, env(safe-area-inset-bottom));
+  left: 1.1rem;
+  right: 92px; /* laisse respirer le bouton WhatsApp flottant */
+  z-index: 170; /* sous la modale panier (180) : jamais de masque sur le résumé */
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.15rem;
+  border-radius: var(--r-full);
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(14px);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 260ms var(--ease),
+    transform 260ms var(--ease),
+    visibility 0s linear 260ms;
+}
+.cart-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition:
+    opacity 260ms var(--ease),
+    transform 260ms var(--ease);
+}
+.cart-toast svg {
+  width: 17px;
+  height: 17px;
+  color: var(--brass);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   18. PREMIUM TYPOGRAPHY & SPACING — ajustements visuels
+   Logo agrandi, badges/pilules aérés, panier plus lisible
+   ============================================================ */
+
+/* ---------- 18.1 Logo (barre de navigation) ---------- */
+/* La marque devient imposante : verrouillé sur .navbar__logo pour ne pas
+   affecter la marque réduite de la modale panier (.cart__brand). */
+.navbar__logo .logo-word {
+  font-size: 2.05rem;
+  letter-spacing: -0.02em;
+  line-height: 1.06;
+}
+.navbar__logo .logo-sub {
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  margin-top: 3px;
+}
+.navbar__logo {
+  gap: 0.9rem;
+}
+/* L'écusson rond suit partout (navbar, footer, modale panier) */
+.logo-badge {
+  width: 48px;
+  height: 48px;
+}
+/* Mobile : la marque reste grande mais contenue dans la barre */
+@media (max-width: 639px) {
+  .navbar__logo {
+    gap: 0.72rem;
+  }
+  .navbar__logo .logo-badge {
+    width: 42px;
+    height: 42px;
+  }
+  .navbar__logo .logo-word {
+    font-size: 1.6rem;
+  }
+  .navbar__logo .logo-sub {
+    font-size: 0.74rem;
+    margin-top: 2px;
+  }
+}
+@media (max-width: 380px) {
+  .navbar__logo .logo-badge {
+    width: 38px;
+    height: 38px;
+  }
+  .navbar__logo .logo-word {
+    font-size: 1.42rem;
+  }
+  .navbar__logo .logo-sub {
+    font-size: 0.66rem;
+  }
+}
+
+/* ---------- 18.2 Badges et pilules (eyebrow, avis, horaires) ---------- */
+/* Textes légèrement plus grands + padding généreux : les boîtes respirent. */
+.eyebrow {
+  font-size: 1.05rem;
+  padding: 0.55rem 1.05rem;
+  border-radius: var(--r-full);
+  background: rgba(var(--brass-rgb), 0.12);
+  border: var(--border-brass);
+  display: inline-block;
+}
+.hero__eyebrow {
+  font-size: 0.9rem;
+  gap: 0.8rem;
+  padding: 0.62rem 1.3rem 0.62rem 1.05rem;
+}
+.tab {
+  font-size: 0.95rem;
+  padding: 0.7rem 1.45rem;
+}
+.tag {
+  font-size: 0.88rem;
+  padding: 0.32rem 0.95rem;
+}
+.status {
+  font-size: 0.95rem;
+  padding: 0.55rem 1.15rem;
+}
+.hero__trust li {
+  font-size: 0.95rem;
+  gap: 0.5rem;
+  padding: 0.65rem 1.3rem;
+}
+.apropos__figtag {
+  font-size: 0.9rem;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+}
+.apropos__figtag svg {
+  width: 14px;
+  height: 14px;
+}
+.menu-card figcaption {
+  font-size: 0.9rem;
+  padding: 1rem 1.25rem;
+}
+.menu__formule-note {
+  font-size: 0.92rem;
+}
+
+/* ---------- 18.3 Composants du panier ---------- */
+/* Badge du bouton panier (navbar) */
+.cart-open-btn__badge {
+  min-width: 22px;
+  height: 22px;
+  padding: 0 7px;
+  font-size: 0.8rem;
+  line-height: 22px;
+}
+/* Compteur de la barre « Voir mon panier » */
+.menu-cartline__count {
+  min-width: 26px;
+  height: 26px;
+  padding: 0 8px;
+  font-size: 0.85rem;
+  line-height: 26px;
+}
+/* Bouton de la même barre : texte et icône plus lisibles */
+.menu-cartline__btn {
+  gap: 0.7rem;
+  padding: 0.7rem 1.35rem;
+  font-size: 0.95rem;
+}
+.menu-cartline__btn svg {
+  width: 18px;
+  height: 18px;
+}
+/* Pilule « Continuer mes achats » de la modale */
+.cart__pill {
+  padding: 0.7rem 1.4rem;
+  font-size: 0.95rem;
+}
+/* Sélecteur de quantité [ − n + ] : chiffres et icônes dégagés des bords */
+.cart-qty__btn {
+  font-size: 1.15rem;
+}
+.cart-qty__value {
+  font-size: 1.08rem;
+}
+/* Compteur du titre « Votre panier » */
+.cart__title-count {
+  font-size: 0.92rem;
+  padding: 0.25rem 0.85rem;
+}
+/* Petits textes des lignes produits */
+.cart-row--head span {
+  font-size: 0.78rem;
+}
+.cart-row__variant {
+  font-size: 0.92rem;
+}
+.cart-row__unit {
+  font-size: 0.92rem;
+}
+
+@media (min-width: 991px) {
+  /* La colonne « Quantité » suit l'élargissement de la pilule */
+  .cart-card--items {
+    --cart-row-cols: 72px minmax(0, 1fr) 140px 88px 38px;
+  }
+  .cart-row__name {
+    font-size: 1.08rem;
+  }
+  .cart-qty {
+    width: 140px;
+    height: 42px;
+  }
+  .cart-qty__btn {
+    width: 40px;
+  }
+}
+
+/* ============================================================
+   19. ULTRA-AIR — espacements radicaux, protégés mobile
+   Règle d'or : JAMAIS de padding fixe qui casserait le mobile.
+   Chaque espacement = clamp(min_mobile, préférentiel_vw, max_bureau)
+   ↳ à 320px on tombe sur le min (pile stricte déjà prévue à 17.10),
+   ↳ sur grand écran on atteint le max (~2x les valeurs précédentes).
+   ============================================================ */
+
+/* ---------- 19.1 Wrapper global du panier (Cadre crème) ---------- */
+/* Avant : ~33.6/38.4/41.6px max — Après : jusqu'à 43/40/45px par axe.
+   Le gain d'air total bordure→texte vient de la SOMME wrapper + lignes
+   (cf. 19.2) : jusqu'à ~2x verticalement (audit à 320/375/991/1440px).
+   À 320px : 4vw < 1.1rem → retombe sur le min mobile safe. */
+.cart__card {
+  padding: clamp(1.1rem, 4vw, 2.7rem) clamp(1rem, 3.2vw, 2.5rem)
+    clamp(1.3rem, 4vw, 2.8rem);
+}
+
+/* Air interne des cadres blancs : souffle au-dessus/en dessous des plats
+   (les paddings latéraux restent portés par les lignes, sans double inset) */
+.cart-card--items {
+  padding-block: clamp(0.9rem, 2.2vw, 1.6rem);
+}
+/* Carte « Résumé » : padding doublé sur bureau, min mobile conservé */
+.cart-card--summary {
+  padding: clamp(1.4rem, 3.2vw, 2.4rem) clamp(1.25rem, 2.8vw, 2.4rem)
+    clamp(1.5rem, 3.6vw, 2.5rem);
+}
+
+/* ---------- 19.2 Lignes de plats : espacement ~2x sur bureau ---------- */
+/* min = anciennes valeurs ≤480px (0.95/0.85rem) : la pile stricte 17.10
+   garde exactement ses protections d'origine sur très petits écrans.
+   Caps calibrés pour la grille desktop (1fr + 320px résumé) : la colonne
+   « nom du plat » garde >=110px à 991px et >=125px à 1440px. */
+.cart-row {
+  gap: clamp(0.7rem, 1vw, 1rem); /* 11.2px → 16px (colonne↔colonne) */
+  padding: clamp(0.95rem, 2.4vw, 1.75rem) clamp(0.85rem, 2.4vw, 2rem);
+  /* block : 16px → 28px (+75%, approche 2x) | inline : 16.8px → 32px (1.9x) */
+}
+/* Distance visuelle entre deux lignes = 2 × padding-block : 32px → 56px */
+.cart-row--head {
+  padding: clamp(0.95rem, 1.8vw, 1.25rem) clamp(0.85rem, 2.4vw, 2rem)
+    clamp(0.75rem, 1.2vw, 0.9rem);
+}
+/* Écart entre la liste de plats et la carte Résumé : 1.3rem → 2.2rem max */
+.cart__grid {
+  gap: clamp(1.3rem, 2.6vw, 2.2rem);
+}
+/* Respirations internes du Résumé (doublage raisonnable) */
+.cart-summary__title {
+  margin: 0 0 1.3rem;
+}
+.cart-field__label {
+  margin-bottom: 0.75rem;
+}
+#cart-notes {
+  min-height: 92px;
+  padding: 0.95rem 1.15rem;
+}
+.cart-totals {
+  margin: 1.6rem 0 0;
+}
+.cart-totals__row {
+  padding-block: 0.6rem;
+}
+
+/* ---------- 19.3 Badges pilules du Hero : 2x+ de padding-inline ---------- */
+/* Pilule bien plus longue que le texte : jusqu'à ~31px d'air de chaque côté.
+   Sécurité wrap : le conteneur .hero__trust est déjà display:flex +
+   flex-wrap:wrap (règle n°6) ; son gap est ici doublé et clampé. */
+.hero__trust {
+  gap: clamp(0.7rem, 1.6vw, 1.05rem) clamp(0.8rem, 2.2vw, 1.5rem);
+}
+.hero__trust li {
+  padding-block: clamp(0.65rem, 1.5vw, 0.85rem);
+  padding-inline: clamp(0.95rem, 3.2vw, 1.95rem);
+  gap: clamp(0.5rem, 1vw, 0.7rem);
+}
+/* Bandeau pilule du Hero (titre eyebrow) : même logique, ~2x d'air */
+.hero__eyebrow {
+  padding-block: clamp(0.62rem, 1.4vw, 0.8rem);
+  padding-inline: clamp(0.95rem, 2.4vw, 1.5rem) clamp(0.95rem, 2.2vw, 1.3rem);
+}
+/* En-têtes de section (autre type de pilule eyebrow) : air doublé */
+.eyebrow {
+  padding-block: clamp(0.55rem, 1.2vw, 0.7rem);
+  padding-inline: clamp(1.05rem, 2.4vw, 1.5rem);
+}
+
+/* ---------- 19.4 Garde-fou explicit ≤380px (zéro débordement 320px) ---------- */
+/* Marge de sécurité supplémentaire : pilules légèrement resserrées,
+   icônes réduites — le wrap reste propre, aucune ligne ne dépasse. */
+@media (max-width: 380px) {
+  .hero__trust li {
+    font-size: 0.88rem;
+  }
+  .hero__trust svg {
+    width: 24px;
+    height: 24px;
+  }
+  .hero__trust li {
+    padding-block: 0.55rem;
+    padding-inline: 0.85rem;
+  }
+  .hero__eyebrow {
+    padding-block: 0.55rem;
+    padding-inline: 0.85rem 0.95rem;
+  }
+}
+
+/* ---------- 19.5 FAB WhatsApp : pulse continu + taille up ---------- */
+/* Avant : anneau transparent animé 1x/10s → bouton « furtif ».
+   Après : halo vert WhatsApp continu (box-shadow animée, sans saut de
+   géométrie, déborde jamais horizontalement car centré sur le FAB)
+   + icône agrandie 48 → 56px. Dernier mot sur le rendu (EOF). */
+.wa-fab .wa-glyph {
+  width: 56px;
+  height: 56px;
+}
+.wa-fab {
+  /* ombre portée permanente : le bouton se détache du fond */
+  filter: drop-shadow(0 6px 16px rgba(var(--wa-dark-rgb), 0.38));
+}
+.wa-fab__ring {
+  /* opacity:1 — écrase le `opacity: 0` du §14 (sinon le halo resterait
+     invisible) ; le pulse part de 0 (invisible derrière le bouton) →
+     pas de « pop » visible au bouclage de l'animation */
+  opacity: 1;
+  animation: fab-pulse-live 2.4s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+}
+@keyframes fab-pulse-live {
+  0% {
+    box-shadow: 0 0 0 0 rgba(var(--wa-icon-rgb), 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(var(--wa-icon-rgb), 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--wa-icon-rgb), 0);
+  }
+}
+/* Accessibilité : mouvement réduit → anneau statique discret, rien ne pulse */
+@media (prefers-reduced-motion: reduce) {
+  .wa-fab__ring {
+    animation: none;
+    opacity: 1;
+    box-shadow: 0 0 0 3px rgba(var(--wa-icon-rgb), 0.3);
+  }
+}
+
+/* ============================================================
+   21. À PROPOS — refonte en 3 zones horizontales
+   Zone 1 : en-tête (badge + titre) plein haut, aligné à gauche
+   Zone 2 : vidéo (ratio 4/3, hauteur naturelle) · texte centré
+   Zone 3 : les 3 caractéristiques en pleine largeur en bas
+   ============================================================ */
+
+/* Zone 3 (desktop ≥1024px) : grille 3 colonnes égales, toute la largeur */
+@media (min-width: 1024px) {
+  .apropos__features {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* ============================================================
+   20. MENU / SPÉCIALITÉS — slider horizontal natif (swipe)
+   Conteneur   : flex nowrap + overflow-x auto + scroll-snap mandatory
+                 + scrollbar masquée + gap 1.5rem.
+   Cartes      : flex basis 85% (mobile) → 300px (≥768px), snap center,
+                 hauteur égale (align-items: stretch), fond surface,
+                 radius 16px, bordure fine, padding interne généreux.
+   Image       : DANS le padding, 100% / ratio 4-3 / object-fit cover
+                 / radius 12px.
+   Textes      : titre gras accent + margin-top 1rem ; description
+                 complète (texte entier affiché) ; footer prix+bouton
+                 collé au bas (margin-top: auto) en flex space-between.
+   Scroll      : natif uniquement — doigt sur mobile (inertie iOS),
+                 trackpad / molette+Shift sur desktop. Le JS du panier
+                 (délégation [data-add]) et des onglets ([data-cat] /
+                 .is-hidden) est inchangé.
+   ============================================================ */
+
+/* ---------- 20.1 Conteneur du carrousel ---------- */
+.menu__grid {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch; /* toutes les cartes à la même hauteur */
+  gap: 1.5rem;
+  overflow-x: auto; /* berceau de défilement natif (overflow-y forcé à hidden) */
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; /* inertie iOS */
+  overscroll-behavior-x: contain; /* pas de rebond @ travers du site */
+  /* place pour la surélévation au survol (overflow-y clippé sinon) */
+  padding-block: 0.5rem 1.1rem;
+  /* aération du bord gauche/droit + référence de snap */
+  padding-inline: 0.25rem;
+  scroll-padding-inline: 0.25rem;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge legacy */
+}
+.menu__grid::-webkit-scrollbar {
+  display: none; /* Chrome / Safari :-scrollbar épurée */
+}
+.menu__grid:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 4px;
+}
+
+/* ---------- 20.2 Les cartes du slider ---------- */
+.menu-item {
+  flex: 0 0 85%; /* dépasse l'écran → swipe au doigt */
+  min-width: 0;
+  padding: 0; /* annule l'ancienne ligne séparée §9 */
+  border-bottom: none; /* idem */
+  scroll-snap-align: center;
+  scroll-snap-stop: always; /* une carte à la fois */
+}
+.menu-item.is-hidden {
+  display: none; /* filtres des onglets : inchangé */
+}
+@media (min-width: 768px) {
+  .menu-item {
+    flex: 0 0 300px;
+  }
+}
+
+.menu-item__card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: clamp(1.1rem, 2.2vw, 1.35rem);
+  background: var(--surface); /* différent du fond section var(--bg-alt) */
+  border: var(--border-soft);
+  border-radius: var(--r-menu);
+  box-shadow: var(--shadow-xs);
+  transition:
+    transform var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease);
+}
+.menu-item:hover .menu-item__card,
+.menu-item:focus-within .menu-item__card {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.menu-item__card:focus-within {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+
+/* ---------- 20.3 Image : dans le padding, ratio 4/3 ---------- */
+.menu-item__media {
+  position: relative;
+  flex: 0 0 auto;
+}
+.menu-item__media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--r-md);
+}
+/* Vignette de repli (cabri, sans photo dédiée) — même langage que le panier */
+.menu-item__media--ph {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-md);
+  background: linear-gradient(135deg, var(--brass-soft), var(--cream-soft));
+  color: var(--brass-deep);
+}
+.menu-item__media--ph svg {
+  width: 34px;
+  height: 34px;
+}
+/* Badges superposés : numéro (haut-gauche) et « Spécialité » (haut-droite) */
+.menu-item__media .menu-item__num {
+  position: absolute;
+  top: 0.55rem;
+  left: 0.55rem;
+  z-index: 2;
+  margin-right: 0;
+  background: rgba(var(--surface-rgb), 0.94);
+  box-shadow: 0 1px 4px rgba(var(--ink-rgb), 0.22);
+}
+.menu-item__media .tag {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  z-index: 2;
+  margin-left: 0;
+  border-radius: var(--r-full);
+  background: rgba(var(--fire-rgb), 0.92); /* braise, comme la marque */
+  color: var(--white);
+  box-shadow: 0 1px 4px rgba(var(--ink-rgb), 0.22);
+}
+
+/* ---------- 20.4 Textes ---------- */
+.menu-item__card .menu-item__title {
+  display: block;
+  margin: 1rem 0 0; /* +1rem sous l'image */
+  font-family: "Fraunces", serif;
+  font-weight: 700; /* gras */
+  font-size: 1.12rem;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  color: var(--brass-dark); /* couleur d'accentuation du site */
+  overflow-wrap: break-word;
+}
+.menu-item__card .menu-item__desc {
+  /* Texte complet : plus de clamp sur 2 lignes (le footer reste en bas
+     grâce à margin-top:auto, les cartes s'alignent sur la plus haute) */
+  margin: 0.4rem 0 0;
+  padding-left: 0; /* annule l'indentation §9 */
+  font-family: "Work Sans", sans-serif;
+  font-style: normal;
+  font-variation-settings: normal;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink-mute); /* grisée secondaire */
+}
+
+/* ---------- 20.5 Footer de carte : prix + bouton, poussés en bas ---------- */
+.menu-item__card .menu-item__buy {
+  margin: 1rem 0 0; /* annule l'ancienne marge-left 2.5rem */
+  margin-top: auto; /* colle le footer au bas, quelle que soit la hauteur */
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap; /* garde-fou : jamais de débordement à 320px */
+  gap: 0.6rem 0.8rem;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.07);
+}
+.menu-item__card .menu-item__price strong {
+  font-size: 1.2rem;
+}
+
+/* ---------- 20.6 Garde-fous ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .menu__grid {
+    scroll-behavior: auto;
+  }
+  .menu-item:hover .menu-item__card,
+  .menu-item:focus-within .menu-item__card {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   22. MENU — pastille « Glissez pour voir toute la carte »
+   Bouton-pill discret sous le rail (+ chevron qui pousse vers la
+   droite) et dégradé d'affordance sur le bord droit du carrousel,
+   qui s'efface une fois le bout du rail atteint (classe .is-end).
+   ============================================================ */
+
+/* ---------- 22.1 Rangée du bouton ---------- */
+.menu__hintrow {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.8rem;
+}
+
+/* ---------- 22.2 La pastille-bouton ---------- */
+.menu__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 36px;
+  padding: 0.4rem 0.95rem;
+  border: var(--border-brass);
+  border-radius: var(--r-full);
+  background: var(--brass-soft);
+  color: var(--brass-deep);
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    opacity var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease),
+    visibility var(--dur-fast) var(--ease);
+}
+.menu__hint:hover,
+.menu__hint:focus-visible {
+  background: var(--brass);
+  border-color: var(--brass);
+  color: var(--white);
+}
+.menu__hint:focus-visible {
+  outline: 2px solid var(--fire);
+  outline-offset: 3px;
+}
+.menu__hint svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+  /* chevron « bas » du sprite pivoté pour pointer vers la droite */
+  transform: rotate(-90deg);
+  animation: hint-nudge 1.6s var(--ease) infinite;
+}
+/* après rotate(-90deg), l'axe Y local correspond à la droite de l'écran */
+@keyframes hint-nudge {
+  0%,
+  100% {
+    transform: rotate(-90deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-90deg) translateY(4px);
+  }
+}
+
+/* État masqué (plus rien à voir à droite, ou utilisateur déjà parti) */
+.menu__hint.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px);
+}
+
+/* ---------- 22.3 Affordance du bord droit du rail ---------- */
+.menu__grid {
+  mask-image: linear-gradient(
+    to right,
+    #000 calc(100% - 2.2rem),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 calc(100% - 2.2rem),
+    transparent 100%
+  );
+}
+.menu__grid.is-end {
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+/* ---------- 22.4 Mouvements réduits : flèche statique ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .menu__hint svg {
+    animation: none;
+    transform: rotate(-90deg);
+  }
+  .menu__hint.is-hidden {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   25. MENU — effet « Aperçu » (peek) mobile ≤767px
+   La carte courante occupe 80vw (~80-85% de l'écran) : l'arête de
+   la carte suivante reste visible à droite → le swipe devient
+   évident, la pastille « Glissez » devient un simple rappel.
+   - snap « start » sur les cartes + padding-inline: 0 et
+     scroll-padding-inline-start: 0 sur le rail : l'arête gauche
+     des cartes tombe sur la marge du .container (clamp mobile
+     ≈ 1rem) — la carte n'est donc jamais collée au bord de
+     l'écran, et la position initiale (scrollLeft 0) COINCIDE
+     exactement avec les points d'ancrage snappés (pas de saut).
+   - le masque dégradé §22.3 est neutralisé sur mobile : il fondu
+     exactement la zone où la carte suivante doit rester visible.
+   - gap 1rem + scrollbar déjà masquée (§20.1).
+   Desktop (>767px) : inchangé — cartes 300px, snap center.
+   ============================================================ */
+@media (max-width: 767px) {
+  .menu__grid {
+    gap: 1rem;
+    padding-inline: 0;
+    scroll-padding-inline-start: 0;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+  .menu-item {
+    flex: 0 0 80vw;
+    scroll-snap-align: start;
+  }
+}
+
+/* Onglets de catégories : tous visibles, sans rail horizontal ni fondu. */
+.menu__tabs {
+  flex-wrap: wrap !important;
+  overflow: visible !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+  gap: 0.55rem;
+  padding: 0;
+}
+
+.menu__tabs .tab {
+  flex: 0 0 auto;
+}
+
+/* Les clics souris/tactiles ne laissent plus de cadre brun sur les plats.
+   Le focus clavier reste indiqué pour l'accessibilité. */
+.menu__grid .menu-item__card:focus-within {
+  outline: none;
+}
+
+.menu__grid .menu-item__add:focus-visible,
+.menu__grid .portion-toggle__btn:focus-visible {
+  outline: 2px solid var(--brass-dark);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   23. CONTACT — deux établissements (Local 1 CNPS · Local 2 Asabou)
+   La grille .contact__grid reste 3 colonnes : la carte « Adresse »
+   liste les deux locaux en sous-blocs (étiquette + adresse + lien
+   Maps), la carte « Horaires » détaille la plage horaire de chacun,
+   et les 2 cartes Google Maps passent en duo — empilées en mobile
+   (flex column), 50/50 en ≥768px (grid 2 colonnes).
+   ============================================================ */
+
+/* ---------- 23.1 Carte « Adresse » : les deux locaux ---------- */
+.info-card__locals {
+  display: grid;
+  gap: 1.15rem; /* la marge qui fait respirer entre les deux adresses */
+}
+.local + .local {
+  border-top: 1px solid rgba(var(--ink-rgb), 0.08);
+  padding-top: 1.15rem;
+}
+.local__tag {
+  margin: 0 0 0.3rem;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brass-dark);
+}
+.local > p {
+  margin: 0 0 0.45rem;
+}
+.local:last-child > .info-card__link {
+  margin-bottom: 0;
+}
+
+/* ---------- 23.2 Carte « Horaires » : plage horaire par local ---------- */
+.horaires td {
+  white-space: nowrap;
+}
+
+/* ---------- 23.3 Duo de cartes Google Maps ----------
+   Mobile  : flex column, gap 1.5rem (empilage aéré).
+   ≥768px  : grid 2 col 1fr/1fr, gap 2rem (côte à côte, 50/50).
+   Chaque .map garde son habillage arrondi + bord + ombre d'origine
+   (règle §11) ; un bandeau étiquette identifie le local au-dessus
+   de l'iframe, qui garde un ratio équilibré pour ce format duo. */
+.maps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .maps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+.maps .map__frame {
+  /* finit sur les anciens 16/9 · 16/7.5 · 16/6.5 (specificité 0,2,0) */
+  aspect-ratio: 16 / 10;
+}
+.map__label {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.06);
+}
+
+/* ============================================================
+   24. POULET — toggle de portion + « Promo du Mardi »
+   Toggle binaire Entier / Demi, bien visible dans les 2 cartes
+   poulet (tracé et sauté/grillé) : progression laiton plein quand
+   la portion est sélectionnée, cible tactile 44px. Le mardi, le
+   prix affiché devient ancien prix barré (<del>) + prix promo
+   en --fire + pastille « Promo du Mardi ! ». JS : script.js,
+   grille GRILLE_POULET.
+   ============================================================ */
+
+/* ---------- 24.1 Toggle Entier / Demi ---------- */
+.menu-item__portion {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0.9rem 0 0;
+}
+.menu-item__portion-label {
+  flex: 0 0 auto;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.portion-toggle {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* les 2 options partagent la largeur */
+  gap: 0.3rem;
+  padding: 0.3rem;
+  border: var(--border-brass);
+  border-radius: var(--r-full);
+  background: rgba(var(--brass-rgb), 0.1); /* fond laiton très doux */
+}
+.portion-toggle__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 44px; /* cible tactile confortable */
+  padding: 0.35rem 0.5rem;
+  border: 0;
+  border-radius: var(--r-full);
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease);
+}
+.portion-toggle__btn:hover {
+  color: var(--brass-dark);
+}
+.portion-toggle__btn.is-active {
+  background: var(--brass);
+  color: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+.portion-toggle__btn:focus-visible {
+  outline: 2px solid var(--fire);
+  outline-offset: 2px;
+}
+
+/* ---------- 24.2 Prix promo du mardi ---------- */
+.menu-item__price del {
+  color: var(--ink-mute);
+}
+.menu-item__price.is-promo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+.menu-item__price.is-promo strong {
+  color: var(--fire);
+}
+.promo-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid rgba(var(--fire-rgb), 0.25);
+  border-radius: var(--r-full);
+  background: var(--fire-soft);
+  color: var(--fire);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   26. FIN DE FEUILLE — correctifs d'audit (dernier mot)
+   - Liens de nav sur une seule ligne + navbar compacte 1024–1199.
+   - Toast masqué quand la modale panier est ouverte.
+   ============================================================ */
+
+/* Les libellés de nav ne se replient jamais sur deux lignes */
+.nav-link {
+  white-space: nowrap;
+}
+
+/* Segment 1024–1199 : la barre manquait de place (logo 2rem +
+   5 liens + CTA + panier) → compactage du logo, des pastilles et du CTA */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .navbar__logo {
+    gap: 0.6rem;
+  }
+  .navbar__logo .logo-badge {
+    width: 42px;
+    height: 42px;
+  }
+  .navbar__logo .logo-word {
+    font-size: 1.5rem;
+  }
+  .navbar__logo .logo-sub {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+  .navbar__nav {
+    margin-right: 54px;
+  }
+  .navbar__nav ul {
+    gap: 0.05rem;
+    margin-right: 0.25rem;
+  }
+  .nav-link {
+    padding: 0.42rem 0.55rem;
+    font-size: 0.82rem;
+  }
+  .navbar__cta {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Ceinture de sécurité : le toast ne recouvre jamais le résumé du
+   panier, même si un état résiduel traînait à l'ouverture */
+.cart.is-open ~ .cart-toast {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* ============================================================
+   NAVIGATION — direction visuelle alignée sur le projet SAJO
+   Barre claire, éditoriale et compacte ; les actions O'Poulet
+   (commande et panier) restent accessibles.
+   ============================================================ */
+.site-header.navbar {
+  --nav-h: 78px;
+  position: sticky;
+  inset: 0 auto auto;
+  height: var(--nav-h);
+  background: rgba(255, 251, 242, 0.96);
+  border: 0;
+  box-shadow: 0 2px 18px rgba(30, 19, 11, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.site-header.navbar::after {
+  display: none;
+}
+
+.site-header .navbar__inner.container {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+  padding: 0 max(5vw, 24px);
+}
+
+.site-header .navbar__logo {
+  gap: 0;
+  color: var(--ink) !important;
+}
+
+.site-header .logo-badge {
+  display: none;
+}
+
+.site-header .navbar__logo .logo-word {
+  display: flex;
+  flex-direction: column;
+  font-family: "Work Sans", Arial, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.12em;
+}
+
+.site-header .navbar__logo .logo-sub {
+  margin-top: 5px;
+  color: var(--ink-soft) !important;
+  font-family: "Work Sans", Arial, sans-serif;
+  font-size: 0.69rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.22em;
+}
+
+.site-header .navbar__nav {
+  align-items: center;
+  gap: clamp(16px, 2.6vw, 38px);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.site-header .navbar__nav ul {
+  align-items: center;
+  gap: clamp(16px, 2.6vw, 38px);
+  margin: 0;
+}
+
+.site-header .nav-link {
+  padding: 0;
+  border-radius: 0;
+  color: var(--ink) !important;
+  font-family: "Work Sans", Arial, sans-serif;
+  font-size: 0.94rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.site-header .nav-link:hover,
+.site-header .nav-link:focus-visible,
+.site-header .nav-link.is-active {
+  color: var(--fire) !important;
+  background: transparent;
+  box-shadow: none;
+}
+
+.site-header .navbar__cta {
+  min-height: 0;
+  margin: 0;
+  padding: 10px 17px;
+  border: 1px solid var(--wa);
+  border-radius: 2px;
+  background: var(--wa);
+  color: var(--ink);
+  box-shadow: none;
+  font-family: "Work Sans", Arial, sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.site-header .navbar__cta:hover,
+.site-header .navbar__cta:focus-visible {
+  background: var(--wa);
+  border-color: var(--wa);
+  color: var(--ink);
+  box-shadow: none;
+  transform: none;
+}
+
+.site-header .navbar__cta .wa-glyph {
+  display: none;
+}
+
+.site-header .navbar__cta-arrow {
+  padding-left: 6px;
+}
+
+.site-header .cart-open-btn {
+  position: relative;
+  top: auto;
+  right: auto;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid rgba(var(--ink-rgb), 0.16);
+  border-radius: 50%;
+  background: transparent !important;
+  color: var(--ink) !important;
+  transform: none;
+}
+
+.site-header .cart-open-btn:hover,
+.site-header .cart-open-btn:focus-visible {
+  border-color: var(--terracotta, var(--fire));
+  background: rgba(var(--ink-rgb), 0.05) !important;
+  color: var(--fire) !important;
+  transform: none;
+}
+
+.site-header .cart-open-btn__badge {
+  box-shadow: 0 0 0 2px var(--surface);
+}
+
+.site-header .navbar__burger {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .site-header.navbar {
+    --nav-h: 70px;
+  }
+
+  .site-header .navbar__inner.container {
+    padding: 0 max(5vw, 20px);
+  }
+
+  .site-header .navbar__burger {
+    position: static;
+    display: flex;
+    width: 42px;
+    height: 42px;
+    padding: 10px;
+    gap: 6px;
+    border: 0;
+    border-radius: 0;
+    background: transparent !important;
+    backdrop-filter: none;
+  }
+
+  .site-header .navbar__burger span {
+    width: 21px;
+    height: 1px;
+    background: var(--fire) !important;
+  }
+
+  .site-header .navbar__burger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(3.5px) rotate(45deg);
+  }
+
+  .site-header .navbar__burger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 1;
+    transform: translateY(-3.5px) rotate(-45deg);
+  }
+
+  .site-header .navbar__nav {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 12px max(5vw, 20px) 24px;
+    background: var(--surface);
+    border: 0;
+    border-radius: 0;
+    box-shadow: 0 12px 15px rgba(30, 19, 11, 0.08);
+  }
+
+  .site-header .navbar__nav.is-open {
+    display: flex;
+    animation: none;
+  }
+
+  .site-header .navbar__nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .site-header .nav-link {
+    padding: 12px 0;
+  }
+
+  .site-header .navbar__cta {
+    width: 100%;
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  .site-header .cart-open-btn {
+    align-self: center;
+    margin-top: 14px;
+  }
+}
+
+/* ============================================================
+   CARTE — présentation en liste inspirée de SAJO
+   Les spécialités ne forment plus un carrousel : elles sont visibles
+   dans une grille lisible, sans balayage horizontal.
+   ============================================================ */
+.menu__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 14px;
+  overflow: visible;
+  padding: 0;
+  scroll-behavior: auto;
+  scroll-snap-type: none;
+  scroll-padding-inline: 0;
+  overscroll-behavior-x: auto;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+
+.menu__grid .menu-item {
+  display: block;
+  flex: initial;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
+}
+
+.menu__grid .menu-item__card {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  grid-template-areas:
+    "media title"
+    "media desc"
+    "media portion"
+    "media buy";
+  align-items: start;
+  height: 100%;
+  min-width: 0;
+  padding: 17px;
+  column-gap: 16px;
+  row-gap: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.13);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+.menu__grid .menu-item:hover .menu-item__card,
+.menu__grid .menu-item:focus-within .menu-item__card {
+  box-shadow: none;
+  transform: none;
+}
+
+.menu__grid .menu-item__media {
+  grid-area: media;
+  width: 92px;
+  height: 82px;
+}
+
+.menu__grid .menu-item__media img {
+  width: 92px;
+  height: 82px;
+  aspect-ratio: auto;
+  border-radius: 0;
+  object-fit: cover;
+}
+
+.menu__grid .menu-item__media .menu-item__num,
+.menu__grid .menu-item__media .tag {
+  display: none;
+}
+
+.menu__grid .menu-item__card .menu-item__title {
+  grid-area: title;
+  margin: 0;
+  color: var(--ink);
+  font-family: "Fraunces", serif;
+  font-size: 1.18rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.menu__grid .menu-item__card .menu-item__desc {
+  grid-area: desc;
+  max-width: none;
+  margin: 4px 0 0;
+  padding: 0;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.menu__grid .menu-item__portion {
+  grid-area: portion;
+  margin-top: 10px;
+}
+
+.menu__grid .menu-item__card .menu-item__buy {
+  grid-area: buy;
+  justify-content: space-between;
+  margin: 12px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.menu__grid .menu-item__card .menu-item__price {
+  color: var(--ink);
+  font-size: 0.84rem;
+}
+
+.menu__grid .menu-item__card .menu-item__price strong {
+  font-size: 1rem;
+}
+
+.menu__grid .menu-item__add {
+  min-height: 34px;
+  padding: 0.42rem 0.68rem;
+  font-size: 0.78rem;
+}
+
+@media (max-width: 767px) {
+  .menu__grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .menu__grid .menu-item__card {
+    padding-inline: 0;
+  }
+}

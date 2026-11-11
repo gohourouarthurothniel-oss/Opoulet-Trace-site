@@ -1,0 +1,5 @@
+# robots.txt — O'Poulet Tracé Plus (Yamoussoukro)
+User-agent: *
+Allow: /
+
+Sitemap: https://Opoulettrace.com/sitemap.xml

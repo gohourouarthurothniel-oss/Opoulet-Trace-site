@@ -1,0 +1,24 @@
+{
+  "name": "O'Poulet Tracé Plus — Poulet tracé & braisés à Yamoussoukro",
+  "short_name": "O'Poulet Tracé",
+  "description": "Poulet tracé, poissons et viandes braisés à Yamoussoukro. Ouvert 24h/24 — commandez sur WhatsApp.",
+  "lang": "fr",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4ECD8",
+  "theme_color": "#F4ECD8",
+  "icons": [
+    {
+      "src": "/assets/logo.jpg",
+      "sizes": "256x256",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/logo.jpg",
+      "sizes": "256x256",
+      "type": "image/jpeg",
+      "purpose": "maskable"
+    }
+  ]
+}
